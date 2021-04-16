@@ -2,6 +2,7 @@ package domain.classes;
 
 public interface Character {
 
+
     default int Stamina() {
         return 100;
     }

@@ -1,5 +1,5 @@
 package domain.race;
 
-public enum race {
+public enum Race {
     HUMAN,DWARF,ELF
 }
