@@ -12,7 +12,7 @@ public class Main {
             switch (choice.toLowerCase()) {
                 case "new":
                     System.out.println("your choice : " + choice);
-
+                    app.characterCreation();
                     break;
                 case "load":
                     System.out.println("your choice : " + choice);

@@ -7,6 +7,21 @@ public class Ranger implements Character{
     }
 
     @Override
+    public int initiative() {
+        return Character.super.initiative()+1;
+    }
+
+    @Override
+    public String startingSkill() {
+        return "Piercing shot";
+    }
+
+    @Override
+    public String startingItems() {
+        return String.format("Yew warbow\n x20 barbed head arrows\n Leather chest armour\n");
+    }
+
+    @Override
     public int strength() {
         return Character.super.strength();
     }
@@ -18,12 +33,12 @@ public class Ranger implements Character{
 
     @Override
     public int wisdom() {
-        return Character.super.wisdom();
+        return Character.super.wisdom()+1;
     }
 
     @Override
     public int dexterity() {
-        return Character.super.dexterity();
+        return Character.super.dexterity()+3;
     }
 
     @Override
@@ -43,6 +58,6 @@ public class Ranger implements Character{
 
     @Override
     public int ManaPoints() {
-        return Character.super.ManaPoints();
+        return 0;
     }
 }

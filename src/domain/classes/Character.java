@@ -37,7 +37,14 @@ public interface Character {
     default int ManaPoints() {
         return 100;
     }
-    default int initiative(){
+
+    default int initiative() {
         return 6;
     }
+
+    String startingSkill();
+
+    String startingItems();
+
+
 }
