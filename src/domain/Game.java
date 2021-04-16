@@ -5,11 +5,18 @@ import domain.race.Race;
 public class Game {
     private String name;
     private String gender;
-    public Race race;
+    private Race race;
+    private Character character;
 
     public Game() {
+    }
 
-        this.gender = gender;
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 
     public Race getRace() {

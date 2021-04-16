@@ -1,6 +1,11 @@
 package domain.classes;
 
 public class Ranger implements Character{
+    private String name;
+    public Ranger(String name) {
+        this.name = name;
+    }
+
     @Override
     public int Stamina() {
         return Character.super.Stamina();
@@ -44,5 +49,10 @@ public class Ranger implements Character{
     @Override
     public int ManaPoints() {
         return Character.super.ManaPoints();
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
