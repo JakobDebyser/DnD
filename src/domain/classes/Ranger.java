@@ -1,59 +1,95 @@
 package domain.classes;
 
-public class Ranger implements Character{
+import domain.equipment.Equipment;
+import domain.skills.Skills;
+
+public class Ranger extends Character {
+    private int HP;
+    private int Stam;
+    private int SP;
+    private int speed;
+    private int AC;
+    private int initiative;
+
+    public int getStam() {
+        return Stam=dexterity()*5;
+    }
+
+    public int getSP() {
+        return SP=dexterity()*5;
+    }
+
+    public int getAC() {
+        return AC;
+    }
+
+    public void setAC(int AC) {
+        this.AC = AC;
+    }
+
+    public int getInitiative() {
+        return initiative=initiative();
+    }
+
+    public int getHP() {
+        return HP=constitution()*5;
+    }
+
     @Override
     public int Stamina() {
-        return Character.super.Stamina();
+        return 10;
     }
 
     @Override
     public int initiative() {
-        return Character.super.initiative()+1;
+        return 10+1;
     }
 
     @Override
-    public String startingSkill() {
-        return "Piercing shot";
+    public void startingSkill() {
+        Skills.add("Piercing Shot");
     }
 
     @Override
-    public String startingItems() {
-        return String.format("Yew warbow\n x20 barbed head arrows\n Leather chest armour\n");
+    public void startingItems() {
+       Equipment.addItem(1,"Yew warbow","weapon");
+       Equipment.addItem(20,"barbed head arrows","consumable");
+       Equipment.addItem(1,"Leather chest armour","light armor");
     }
 
-    @Override
+
     public int strength() {
-        return Character.super.strength();
+        return 10;
     }
 
     @Override
     public int intelligence() {
-        return Character.super.intelligence();
+        return 10;
     }
 
     @Override
     public int wisdom() {
-        return Character.super.wisdom()+1;
+        return 10+1;
     }
 
     @Override
     public int dexterity() {
-        return Character.super.dexterity()+3;
+        return 10+3;
     }
 
     @Override
     public int Exppoints() {
-        return Character.super.Exppoints();
+        return 10;
     }
 
     @Override
     public int constitution() {
-        return Character.super.constitution();
+        return 10;
     }
 
     @Override
     public int charisma() {
-        return Character.super.charisma();
+        return 10;
     }
 
     @Override

@@ -1,51 +1,51 @@
 package domain.classes;
 
-public interface Character {
+abstract class Character {
 
 
-    default int Stamina() {
+    int Stamina() {
         return 100;
     }
 
-    default int strength() {
+    int strength() {
         return 10;
     }
 
-    default int intelligence() {
+    int intelligence() {
         return 10;
     }
 
-    default int wisdom() {
+    int wisdom() {
         return 10;
     }
 
-    default int dexterity() {
+    int dexterity() {
         return 10;
     }
 
-    default int Exppoints() {
+    int Exppoints() {
         return 0;
     }
 
-    default int constitution() {
+    int constitution() {
         return 10;
     }
 
-    default int charisma() {
+    int charisma() {
         return 10;
     }
 
-    default int ManaPoints() {
+    int ManaPoints() {
         return 100;
     }
 
-    default int initiative() {
-        return 6;
+    int initiative() {
+        return 5;
     }
 
-    String startingSkill();
+    abstract void startingSkill();
 
-    String startingItems();
+    abstract void startingItems();
 
 
 }

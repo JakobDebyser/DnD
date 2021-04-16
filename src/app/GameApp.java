@@ -58,6 +58,7 @@ public class GameApp {
             System.out.println(game.getName() + " sounds like an interesting " + game.getRace().name() + " so far. What is her class");
         }
 
+
     }
     public void newGame() {
         System.out.println("Wat do you want to play: ");

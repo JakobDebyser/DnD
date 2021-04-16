@@ -1,8 +1,41 @@
 package domain.classes;
 
-public class Mage implements Character {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Mage extends Character {
     private int HP;
     private int MP;
+    private int SP;
+    private int speed;
+    private int AC;
+    private int initiative;
+    private List<String> equipment=new ArrayList<>();
+    private List<String> skills=new ArrayList<>();
+    public int getSP() {
+        return SP=dexterity()*5;
+    }
+
+
+    public int getAC() {
+        return AC;
+    }
+
+    public int getInitiative() {
+        return initiative=initiative();
+    }
+
+    public int getHP() {
+        return HP=constitution()*5;
+    }
+
+    public int getMP() {
+        return MP=wisdom()*5;
+    }
+
+    public List<String> getEquipment() {
+        return equipment;
+    }
 
     @Override
     public int Stamina() {
@@ -11,58 +44,61 @@ public class Mage implements Character {
 
     @Override
     public int strength() {
-        return Character.super.strength();
+        return 10;
     }
 
     @Override
     public int intelligence() {
-        return Character.super.intelligence()+2;
+        return 10+2;
     }
 
     @Override
     public int wisdom() {
-        return Character.super.wisdom() +3;
+        return 10 +3;
     }
 
     @Override
     public int dexterity() {
-        return Character.super.dexterity();
+        return 10;
     }
 
     @Override
     public int Exppoints() {
-        return Character.super.Exppoints();
+        return 10;
     }
 
     @Override
     public int constitution() {
-        return Character.super.constitution();
+        return 10;
     }
 
     @Override
     public int charisma() {
-        return Character.super.charisma();
+        return 10;
     }
 
     @Override
     public int ManaPoints() {
-        return Character.super.ManaPoints();
+        return 10;
     }
 
     @Override
     public int initiative() {
-        return Character.super.initiative();
+        return 10;
     }
 
     @Override
-    public String startingSkill() {
-        return "Lightning Bolt";
+    public void startingSkill() {
+        skills.add("Lightning bolt");
     }
 
 
     @Override
-    public String startingItems() {
-        return String.format("Wonky looking wand\n Burgundy Robes\n Weak mana potion");
+    public void startingItems() {
+        equipment.add("Wonky-looking wand");
+        equipment.add("Burgundy Robes");
+        equipment.add("Weak mana potion");
+
     }
 
 

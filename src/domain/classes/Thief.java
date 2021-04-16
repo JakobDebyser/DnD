@@ -1,63 +1,63 @@
 package domain.classes;
 
-public class Thief implements Character{
+public class Thief extends Character {
     @Override
     public int Stamina() {
-        return Character.super.Stamina();
+        return 10;
     }
 
     @Override
     public int strength() {
-        return Character.super.strength();
+        return 10;
     }
 
     @Override
     public int intelligence() {
-        return Character.super.intelligence()+1;
+        return 10+1;
     }
 
     @Override
     public int wisdom() {
-        return Character.super.wisdom();
+        return 10;
     }
 
     @Override
     public int dexterity() {
-        return Character.super.dexterity()+3;
+        return 10+3;
     }
 
     @Override
     public int Exppoints() {
-        return Character.super.Exppoints();
+        return 0;
     }
 
     @Override
     public int constitution() {
-        return Character.super.constitution();
+        return 10;
     }
 
     @Override
     public int charisma() {
-        return Character.super.charisma();
+        return 10;
     }
 
     @Override
     public int ManaPoints() {
-        return Character.super.ManaPoints();
+        return 10;
     }
 
     @Override
     public int initiative() {
-        return Character.super.initiative()+1;
+        return 10+1;
     }
 
     @Override
-    public String startingSkill() {
-        return String.format("Stealth\n Backstab\n");
+    public void startingSkill() {
+
     }
 
     @Override
-    public String startingItems() {
-        return String.format("Short steel dagger\n Black hooded robes\n x10 lockpicks\n");
+    public void startingItems() {
+
     }
 }

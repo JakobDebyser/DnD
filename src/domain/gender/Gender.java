@@ -1,6 +1,6 @@
 package domain.gender;
 
-public enum gender {
+public enum Gender {
     MALE,FEMALE;
 
     @Override
