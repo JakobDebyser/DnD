@@ -1,6 +1,8 @@
 package app;
 import utility.KeyboardHelper;
 import utility.MenuHelper;
+
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         boolean exit = false;
@@ -11,8 +13,8 @@ public class Main {
             String choice = KeyboardHelper.askForText("Your choice:");
             switch (choice.toLowerCase()) {
                 case "new":
-                    System.out.println("your choice : " + choice);
-                    app.characterCreation();
+                    app.newGame();
+
                     break;
                 case "load":
                     System.out.println("your choice : " + choice);
