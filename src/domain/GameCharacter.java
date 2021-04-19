@@ -1,6 +1,7 @@
 package domain;
 
 import domain.classes.*;
+import domain.equipment.Equipment;
 import domain.gender.Gender;
 import domain.race.Race;
 import domain.skills.Skills;
@@ -57,10 +58,14 @@ public class GameCharacter {
     }
 
     public void getSkills() {
-         Skills.getSkillList();
+
+         Skills.getSkillList() ;
     }
     public void getAttributes(){
 
+    }
+    public void getEquipment(){
+        Equipment.getEquipments();
     }
 
     public String getClassName() {

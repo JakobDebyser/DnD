@@ -46,6 +46,13 @@ public abstract class CharacterClass {
     abstract void startingSkill();
 
     abstract void startingItems();
+    int AC;
 
+    public int getAC() {
+        return AC;
+    }
 
+    public void setAC(int AC) {
+        this.AC = AC;
+    }
 }

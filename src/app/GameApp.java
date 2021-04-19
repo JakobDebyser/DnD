@@ -90,7 +90,8 @@ public class GameApp {
         System.out.println("Your charachter is being created ...");
         Thread.sleep(3000);
         gc.getSkills();
-        System.out.println(gc.getRace().getSpeed());
+        gc.getEquipment();
+        System.out.println("movementspeed: "+gc.getRace().getSpeed());
         System.out.println(gc.getName() + " the " + gc.getGender() + " " +gc.getRace() + " " +className +" is created ");
         System.out.println("Map ");
 
