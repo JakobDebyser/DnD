@@ -1,6 +1,6 @@
 package domain.classes;
 
-public class Mage implements Character {
+public class Mage extends CharacterClass {
     private String name;
     public Mage(String name) {
         this.name = name;
@@ -10,4 +10,15 @@ public class Mage implements Character {
     public String toString() {
         return name;
     }
+
+    @Override
+    void startingSkill() {
+
+    }
+
+    @Override
+    void startingItems() {
+
+    }
+
 }

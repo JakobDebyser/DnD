@@ -1,11 +1,11 @@
 package domain.classes;
 
-public class Warrior extends CharacterClass {
+public class Rogue extends CharacterClass {
     private String name;
-    public Warrior(String name) {
-        this.name = name;
-    }
 
+    public Rogue(String name) {
+        this.name =name;
+    }
     @Override
     public String toString() {
 
