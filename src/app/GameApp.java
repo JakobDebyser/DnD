@@ -3,6 +3,7 @@ package app;
 import domain.Controls;
 import domain.GameCharacter;
 import domain.gender.Gender;
+import domain.map.Combat;
 import domain.model.*;
 import domain.race.Race;
 import utility.KeyboardHelper;
@@ -96,6 +97,7 @@ public class GameApp {
         System.out.println(gc.toString());
         System.out.println("Map is being loaded ...");
         //Map aanmaken
+        Combat.main();
         System.out.println("Field of Generix loaded");
 
     }
