@@ -25,16 +25,29 @@ public class RangerClass implements ChClass {
              if(race.name().equals("HUMAN")){
                 attributes.add(3+ Attributes.DEXTERITY.getValues() + 1);
                 attributes.add(1+Attributes.WISDOM.getValues()+1);
+                attributes.add(Attributes.STRENGTH.getValues());
+                attributes.add(Attributes.CHARISMA.getValues());
+                attributes.add(Attributes.INTELLIGENCE.getValues());
+                attributes.add(Attributes.CONSTITUTION.getValues());
 
             }
             if(race.name().equals("DWARF")){
                 attributes.add(3+ Attributes.DEXTERITY.getValues());
                 attributes.add(1+Attributes.WISDOM.getValues());
+                attributes.add(Attributes.STRENGTH.getValues());
+                attributes.add(Attributes.CHARISMA.getValues());
+                attributes.add(Attributes.INTELLIGENCE.getValues());
+                attributes.add(Attributes.CONSTITUTION.getValues());
+
 
             }
             if(race.name().equals("ELF")){
                 attributes.add(3+ Attributes.DEXTERITY.getValues() +3);
                 attributes.add(1+Attributes.WISDOM.getValues());
+                attributes.add(Attributes.STRENGTH.getValues());
+                attributes.add(Attributes.CHARISMA.getValues());
+                attributes.add(Attributes.INTELLIGENCE.getValues());
+                attributes.add(Attributes.CONSTITUTION.getValues());
 
             }
             return attributes;

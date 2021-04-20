@@ -23,17 +23,26 @@ public class WarriorClass implements ChClass{
         if(race.name().equals("HUMAN")){
             attributes.add(Attributes.STRENGTH.getValues() + 1);
             attributes.add(Attributes.CONSTITUTION.getValues()+1);
-            attributes.forEach(System.out::println);
+            attributes.add(Attributes.DEXTERITY.getValues());
+            attributes.add(Attributes.CHARISMA.getValues());
+            attributes.add(Attributes.WISDOM.getValues());
+            attributes.add(Attributes.INTELLIGENCE.getValues());
         }
         if(race.name().equals("DWARF")){
             attributes.add(3*(Attributes.STRENGTH.getValues() +3));
             attributes.add(2*(Attributes.CONSTITUTION.getValues()+3));
-            attributes.forEach(System.out::println);
+            attributes.add(Attributes.DEXTERITY.getValues());
+            attributes.add(Attributes.CHARISMA.getValues());
+            attributes.add(Attributes.WISDOM.getValues());
+            attributes.add(Attributes.INTELLIGENCE.getValues());
         }
         if(race.name().equals("ELF")){
             attributes.add(3*(Attributes.STRENGTH.getValues()));
             attributes.add(2*(Attributes.CONSTITUTION.getValues()));
-            attributes.forEach(System.out::println);
+            attributes.add(Attributes.DEXTERITY.getValues());
+            attributes.add(Attributes.CHARISMA.getValues());
+            attributes.add(Attributes.WISDOM.getValues());
+            attributes.add(Attributes.INTELLIGENCE.getValues());
         }
         return attributes;
 

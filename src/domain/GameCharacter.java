@@ -16,6 +16,9 @@ public class GameCharacter {
     private Race race;
     private ChClass chClass;
     private int hp ;
+    private int xp;
+    private int sp;
+    private int initiative ;
     private List<Inventory> inventories = new ArrayList<>();
     private List<Integer> attributes = new ArrayList<>();
 
@@ -34,6 +37,30 @@ public class GameCharacter {
     }
     public void addHp(int i){
         hp+=i;
+    }
+
+    public int getInitiative() {
+        return initiative;
+    }
+
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
+    }
+
+    public int getSp() {
+        return sp;
+    }
+
+    public void setSp(int sp) {
+        this.sp = sp;
     }
 
     public int getHp() {
@@ -99,8 +126,10 @@ public class GameCharacter {
                 "Gender=" + gender +"\n"+
                 "Race=" + race +"\n"+
                 "Class=" + chClass +"\n"+
+                        "Xp=" + xp +"\n"+
                 "Hp=" + hp +"\n"+
-                "Inventory=" + inventories +"\n"+
+                        "Sp=" + sp +"\n"+
+                "Initiative=" + initiative +"\n"+
                 "Attributes=" + attributes +"\n";
     }
 }

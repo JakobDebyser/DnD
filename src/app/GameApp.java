@@ -2,13 +2,17 @@ package app;
 
 import domain.Controls;
 import domain.GameCharacter;
+import domain.equipment.Equipment;
 import domain.gender.Gender;
+import domain.map.Combat;
 import domain.model.*;
 import domain.race.Race;
+import domain.skills.Skills;
 import utility.KeyboardHelper;
 
 public class GameApp {
     private ChClass chClass;
+    private Inventory inventory = new InventoryClass();
     public void showControls() {
         for (var controls : Controls.values()
         ) {
@@ -79,13 +83,15 @@ public class GameApp {
             Equipment.addItem(1,"Castle-forged arming sword");
             Equipment.addItem(1,"Kite-shield");
             Equipment.addItem(1,"royal blue brigandine gambeson");
+            gc.addInventory(inventory);
         }
         if(className.equals("mage")){
             chClass =new MageClass("Mage");
             Skills.add(new Skills("lightning bolt"));
             Equipment.addItem(1,"Wonky-looking wand");
             Equipment.addItem(1,"Burgundy robes");
-            Inventory.add("Weak mana potion");
+            inventory.add(20, "Weak mana potion");
+            gc.addInventory(inventory);
 
         }
         if(className.equals("ranger")){
@@ -93,7 +99,8 @@ public class GameApp {
             Skills.add(new Skills("Piercing Shot"));
             Equipment.addItem(1,"yew warbow");
             Equipment.addItem(1,"Leather chest armor");
-            Inventory.add(20,"barbed head arrow");
+            inventory.add(20,"barbed head arrow");
+            gc.addInventory(inventory);
         }
         if(className.equals("rogue")){
             chClass =new RogueClass("Rogue");
@@ -101,13 +108,17 @@ public class GameApp {
             Skills.add(new Skills("Backstab"));
             Equipment.addItem(1,"Short steel dagger");
             Equipment.addItem(1,"Black hooded robe");
-            Inventory.add(10,"lockpick");
-
+            inventory.add(10,"lockpick");
+            gc.addInventory(inventory);
         }
         gc.setChClass(chClass);
         gc.getSkills();
         gc.addAttributes(chClass.getAttributes(gc.getRace()));
         gc.addHp(gc.getRace().getSpeed());
+        gc.setHp(chClass.getHealthPoints());
+        gc.setXp(chClass.getManaPoints());
+        gc.setSp(chClass.getStamina());
+        gc.setInitiative(chClass.getInitiative());
         System.out.println("Your charachter is being created ...");
         Thread.sleep(3000);
         System.out.println(gc.getRace().getSpeed());

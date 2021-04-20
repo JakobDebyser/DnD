@@ -25,16 +25,28 @@ public class MageClass implements ChClass {
         if (race.name().equals("HUMAN")) {
             attributes.add(2 + Attributes.INTELLIGENCE.getValues() + 1);
             attributes.add(3 + Attributes.WISDOM.getValues() + 1);
+            attributes.add(Attributes.DEXTERITY.getValues());
+            attributes.add(Attributes.CHARISMA.getValues());
+            attributes.add(Attributes.CONSTITUTION.getValues());
+            attributes.add(Attributes.STRENGTH.getValues());
 
         }
         if (race.name().equals("DWARF")) {
             attributes.add(2 + Attributes.INTELLIGENCE.getValues());
             attributes.add(3 + Attributes.WISDOM.getValues());
+            attributes.add(Attributes.DEXTERITY.getValues());
+            attributes.add(Attributes.CHARISMA.getValues());
+            attributes.add(Attributes.CONSTITUTION.getValues());
+            attributes.add(Attributes.STRENGTH.getValues());
 
         }
         if (race.name().equals("ELF")) {
             attributes.add(2 + Attributes.INTELLIGENCE.getValues() + 3);
             attributes.add(3 + Attributes.WISDOM.getValues() + 3);
+            attributes.add(Attributes.DEXTERITY.getValues());
+            attributes.add(Attributes.CHARISMA.getValues());
+            attributes.add(Attributes.CONSTITUTION.getValues());
+            attributes.add(Attributes.STRENGTH.getValues());
 
         }
         return attributes;
