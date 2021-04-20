@@ -13,23 +13,19 @@ public class Equipment implements Inventory {
 
     private static final List<String> equipments = new ArrayList<>();
 
-    public static void addItem(int quantity, String item, String type) {
+    public static void addItem(int quantity, String item) {
 
         for (int i = 0; i <= quantity; i++) {
             equipments.add(item);
         }
-        if (type.equals(LIGHT_ARMOUR)){
-
-        }
 
     }
 
-    @Override
-    public List<String> getEquipments() {
-        return equipments;
+
+    public static void getEquipments() {
+        System.out.println("equipment: ");
+        equipments.forEach(System.out::println);
     }
 
- /* public static List<String> getEquipments() {
-        return equipments;
-    }*/
+
 }

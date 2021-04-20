@@ -1,5 +1,6 @@
 package domain;
 
+import domain.equipment.Equipment;
 import domain.gender.Gender;
 import domain.model.ChClass;
 import domain.model.Inventory;
@@ -14,7 +15,7 @@ public class GameCharacter {
     private Gender gender;
     private Race race;
     private ChClass chClass;
-    private List<Integer> hp = new ArrayList<>();
+    private int hp ;
     private List<Inventory> inventories = new ArrayList<>();
     private List<Integer> attributes = new ArrayList<>();
 
@@ -32,14 +33,14 @@ public class GameCharacter {
         inventories.add(inventory);
     }
     public void addHp(int i){
-        hp.add(i);
+        hp+=i;
     }
 
-    public List<Integer> getHp() {
+    public int getHp() {
         return hp;
     }
 
-    public void setHp(List<Integer> hp) {
+    public void setHp(int hp) {
         this.hp = hp;
     }
 
@@ -87,9 +88,8 @@ public class GameCharacter {
     public void getSkills() {
          Skills.getSkillList();
     }
-    public void getAttributes(){
-
-
+    public void getEquipment(){
+        Equipment.getEquipments();
     }
 
     @Override
@@ -100,7 +100,7 @@ public class GameCharacter {
                 "Race=" + race +"\n"+
                 "Class=" + chClass +"\n"+
                 "Hp=" + hp +"\n"+
-                "Initiative=" + inventories +"\n"+
+                "Inventory=" + inventories +"\n"+
                 "Attributes=" + attributes +"\n";
     }
 }

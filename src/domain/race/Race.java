@@ -3,7 +3,7 @@ package domain.race;
 public enum Race {
     HUMAN(6),DWARF(5),ELF(7);
 
-    private int speed;
+    private final int speed;
 
     Race(int baseSpeed){
         this.speed=baseSpeed;

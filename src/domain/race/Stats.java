@@ -11,7 +11,7 @@ public enum Stats {
     }
 
 
-    public  int getSpeed() {
-        return points*4;
+    public  int getValue() {
+        return points;
     }
 }
