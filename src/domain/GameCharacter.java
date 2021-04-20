@@ -11,6 +11,15 @@ public class GameCharacter {
     private Gender gender;
     private Race race;
     private Character character;
+    private CharacterClass character_class;
+
+    public CharacterClass getCharacter_class() {
+        return character_class;
+    }
+
+    public void setCharacter_class(CharacterClass character_class) {
+        this.character_class = character_class;
+    }
 
     public GameCharacter() {
     }
@@ -45,17 +54,6 @@ public class GameCharacter {
     }
 
 
-    public void setClass(Warrior warrior) {
-    }
-
-    public void setClass(Mage mage) {
-    }
-
-    public void setClass(Ranger ranger) {
-    }
-
-    public void setClass(Rogue rogue) {
-    }
 
     public void getSkills() {
 
@@ -68,7 +66,5 @@ public class GameCharacter {
         Equipment.getEquipments();
     }
 
-    public String getClassName() {
-        return CharacterClass.class.getName();
-    }
+
 }

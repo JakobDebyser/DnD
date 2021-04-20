@@ -1,58 +1,18 @@
 package domain.classes;
 
-public abstract class CharacterClass {
+import domain.Stats;
 
+public enum CharacterClass {
+    WARRIOR(new Stats(13,10,10,10,12,10,5)),
+    RANGER(new Stats(10,10,11,13,10,10,6)),
+    ROGUE(new Stats(10,11,10,13,10,10,6)),
+    MAGE(new Stats(10,12,13,10,10,10,5));
 
-    int Stamina() {
-        return 100;
+    private final Stats startingstats;
+    CharacterClass(Stats startingstats) {
+        this.startingstats=startingstats;
     }
-
-    int strength() {
-        return 10;
-    }
-
-    int intelligence() {
-        return 10;
-    }
-
-    int wisdom() {
-        return 10;
-    }
-
-    int dexterity() {
-        return 10;
-    }
-
-    int Exppoints() {
-        return 0;
-    }
-
-    int constitution() {
-        return 10;
-    }
-
-    int charisma() {
-        return 10;
-    }
-
-    int ManaPoints() {
-        return 100;
-    }
-
-    int initiative() {
-        return 5;
-    }
-
-    abstract void startingSkill();
-
-    abstract void startingItems();
-    int AC;
-
-    public int getAC() {
-        return AC;
-    }
-
-    public void setAC(int AC) {
-        this.AC = AC;
+    public Stats getStartingstats(){
+        return startingstats;
     }
 }

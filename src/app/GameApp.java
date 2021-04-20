@@ -2,12 +2,11 @@ package app;
 
 import domain.Controls;
 import domain.GameCharacter;
-import domain.classes.Mage;
-import domain.classes.Ranger;
-import domain.classes.Rogue;
-import domain.classes.Warrior;
+import domain.classes.CharacterClass;
+import domain.equipment.Equipment;
 import domain.gender.Gender;
 import domain.race.Race;
+import domain.skills.Skills;
 import utility.KeyboardHelper;
 
 public class GameApp {
@@ -76,21 +75,37 @@ public class GameApp {
             className = KeyboardHelper.askForText(">").toLowerCase();
         }
         if(className.equals("warrior")){
-            gc.setClass(new Warrior(gc.getName()));
+            gc.setCharacter_class(CharacterClass.WARRIOR);
+
         }
         if(className.equals("mage")){
-            gc.setClass(new Mage("Mage"));
+            gc.setCharacter_class(CharacterClass.MAGE);
+            Skills.add("Lighting bolt");
+            Equipment.addItem(1,"Wonky-looking wand","weapon");
+            Equipment.addItem(1,"Burgundy robes","light armor");
+            Equipment.addItem(1,"Weak mana potion","consumable");
         }
         if(className.equals("ranger")){
-            gc.setClass(new Ranger("Ranger"));
+            gc.setCharacter_class(CharacterClass.RANGER);
+            Skills.add("Piercing Shot");
+            Equipment.addItem(1,"Yew warbow","weapon");
+            Equipment.addItem(20,"barbed head arrow","consumable");
+            Equipment.addItem(1,"Leather chest armor","medium armor");
         }
         if(className.equals("rogue")){
-            gc.setClass(new Rogue("Rogue"));
+            gc.setCharacter_class(CharacterClass.ROGUE);
+            Skills.add("Stealth");
+            Skills.add("Backstab");
+            Equipment.addItem(1,"Short steel dagger","weapon");
+            Equipment.addItem(1,"Black hooded robes","light armor");
+            Equipment.addItem(10,"lockpick","consumable");
+
         }
         System.out.println("Your charachter is being created ...");
         Thread.sleep(3000);
         gc.getSkills();
         gc.getEquipment();
+
         System.out.println("movementspeed: "+gc.getRace().getSpeed());
         System.out.println(gc.getName() + " the " + gc.getGender() + " " +gc.getRace() + " " +className +" is created ");
         System.out.println("Map ");
