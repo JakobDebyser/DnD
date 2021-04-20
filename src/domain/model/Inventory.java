@@ -1,6 +1,9 @@
 package domain.model;
 
+
+
 public interface Inventory {
+
     static void getEquipments() {
 
     }

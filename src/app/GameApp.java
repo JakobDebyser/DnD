@@ -2,8 +2,12 @@ package app;
 
 import domain.*;
 import domain.equipment.Equipment;
+import domain.Controls;
+import domain.GameCharacter;
+import domain.equipment.Equipment;
 import domain.gender.Gender;
 import domain.inventory.Inventory;
+import domain.map.Combat;
 import domain.map.Combat;
 import domain.model.*;
 import domain.race.Race;
@@ -17,6 +21,7 @@ import java.util.List;
 public class GameApp {
     private ChClass chClass;
 
+    private Inventory inventory = new InventoryClass();
     public void showControls() {
         for (var controls : Controls.values()
         ) {
@@ -88,35 +93,42 @@ public class GameApp {
             Equipment.addItem(1, "Castle-forged arming sword");
             Equipment.addItem(1, "Kite-shield");
             Equipment.addItem(1, "royal blue brigandine gambeson");
+            gc.addInventory(inventory);
         }
-        if (className.equals("mage")) {
-            chClass = new MageClass("Mage");
+        if(className.equals("mage")){
+            chClass =new MageClass("Mage");
             Skill.add(new Skill("lightning bolt"));
-            Equipment.addItem(1, "Wonky-looking wand");
-            Equipment.addItem(1, "Burgundy robes");
-            Inventory.add("Weak mana potion");
-
+            Equipment.addItem(1,"Wonky-looking wand");
+            Equipment.addItem(1,"Burgundy robes");
+            inventory.add(20, "Weak mana potion");
+            gc.addInventory(inventory);
         }
-        if (className.equals("ranger")) {
-            chClass = new RangerClass("Ranger");
+        if(className.equals("ranger")){
+           chClass= new RangerClass("Ranger");
             Skill.add(new Skill("Piercing Shot"));
-            Equipment.addItem(1, "yew warbow");
-            Equipment.addItem(1, "Leather chest armor");
-            Inventory.add(20, "barbed head arrow");
+            Equipment.addItem(1,"yew warbow");
+            Equipment.addItem(1,"Leather chest armor");
+            inventory.add(20,"barbed head arrow");
+            gc.addInventory(inventory);
         }
-        if (className.equals("rogue")) {
-            chClass = new RogueClass("Rogue");
+        if(className.equals("rogue")){
+            chClass =new RogueClass("Rogue");
             Skill.add(new Skill("Stealth"));
             Skill.add(new Skill("Backstab"));
-            Equipment.addItem(1, "Short steel dagger");
-            Equipment.addItem(1, "Black hooded robe");
-            Inventory.add(10, "lockpick");
+            Equipment.addItem(1,"Short steel dagger");
+            Equipment.addItem(1,"Black hooded robe");
+            inventory.add(10,"lockpick");
+            gc.addInventory(inventory);
 
         }
         gc.setChClass(chClass);
         gc.getSkills();
         gc.addAttributes(chClass.getAttributes(gc.getRace()));
         gc.addHp(gc.getRace().getSpeed());
+        gc.setHp(chClass.getHealthPoints());
+        gc.setXp(chClass.getManaPoints());
+        gc.setSp(chClass.getStamina());
+        gc.setInitiative(chClass.getInitiative());
         System.out.println("Your charachter is being created ...");
         Thread.sleep(3000);
         System.out.println(gc.getRace().getSpeed());
@@ -147,6 +159,7 @@ public class GameApp {
             System.out.println("2 de kiezen");
         }
     }
+
 
 
 }
