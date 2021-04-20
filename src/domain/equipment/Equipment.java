@@ -22,9 +22,8 @@ public class Equipment implements Inventory {
     }
 
 
-    public static void getEquipments() {
-        System.out.println("equipment: ");
-        equipments.forEach(System.out::println);
+    public static List<String> getEquipments() {
+        return equipments;
     }
 
 

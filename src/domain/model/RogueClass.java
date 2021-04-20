@@ -3,16 +3,16 @@ package domain.model;
 import domain.race.Attributes;
 import domain.race.Race;
 import domain.race.Stats;
-import domain.skills.Skills;
+import domain.skills.Skill;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class RogueClass implements ChClass {
-    private String name;
-    private List<Skills> skillsList = new ArrayList<>();
-    private List<Integer> attributes = new ArrayList<>();
+    private final String name;
+    private final List<Skill> skillList = new ArrayList<>();
+    private final List<Integer> attributes = new ArrayList<>();
 
     public RogueClass(String name) {
         this.name = name;
@@ -21,18 +21,18 @@ public class RogueClass implements ChClass {
     @Override
     public List<Integer> getAttributes(Race race) {
         if(race.name().equals("HUMAN")){
-            attributes.add(3+Attributes.DEXTERITY.getValues() + 1);
-            attributes.add(1+Attributes.INTELLIGENCE.getValues()+1);
+            attributes.add(3+Attributes.DEXTERITY.getValue() + 1);
+            attributes.add(1+Attributes.INTELLIGENCE.getValue()+1);
 
         }
         if(race.name().equals("DWARF")){
-            attributes.add(3+Attributes.DEXTERITY.getValues());
-            attributes.add(1+Attributes.INTELLIGENCE.getValues());
+            attributes.add(3+Attributes.DEXTERITY.getValue());
+            attributes.add(1+Attributes.INTELLIGENCE.getValue());
 
         }
         if(race.name().equals("ELF")){
-            attributes.add(3+Attributes.DEXTERITY.getValues() + 3);
-            attributes.add(1+Attributes.INTELLIGENCE.getValues()+3);
+            attributes.add(3+Attributes.DEXTERITY.getValue() + 3);
+            attributes.add(1+Attributes.INTELLIGENCE.getValue()+3);
 
         }
         return attributes;
@@ -40,12 +40,12 @@ public class RogueClass implements ChClass {
 
     @Override
     public int getHealthPoints() {
-        return Attributes.CONSTITUTION.getValues()* Stats.HP.getValue();
+        return Attributes.CONSTITUTION.getValue()* Stats.HP.getValue();
     }
 
     @Override
     public int getStamina() {
-        return Attributes.DEXTERITY.getValues()*Stats.SP.getValue();
+        return Attributes.DEXTERITY.getValue()*Stats.SP.getValue();
     }
 
     @Override
@@ -60,7 +60,7 @@ public class RogueClass implements ChClass {
 
     @Override
     public int getInitiative() {
-        return Attributes.INITIATIVE.getValues();
+        return Attributes.INITIATIVE.getValue();
     }
 
 
@@ -70,13 +70,29 @@ public class RogueClass implements ChClass {
     }
 
     @Override
-    public void addSkills(String skill) {
-        skillsList.addAll(Objects.requireNonNull(Skills.getSkillList()));
+    public void addSkills() {
+        if (!skillList.containsAll(Skill.getSkillList()))
+        skillList.addAll(Objects.requireNonNull(Skill.getSkillList()));
 
     }
 
     @Override
-    public List<Skills> getSkills() {
-        return skillsList;
+    public void addItems() {
+
+    }
+
+    @Override
+    public void addEquipment() {
+
+    }
+
+    @Override
+    public double getDamage() {
+        return 0;
+    }
+
+    @Override
+    public List<Skill> getSkills() {
+        return skillList;
     }
 }

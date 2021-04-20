@@ -13,7 +13,7 @@ public enum Attributes {
     Attributes(int points) {
         this.points=points;
     }
-    public  int getValues() {
+    public  int getValue() {
         return points;
     }
 }

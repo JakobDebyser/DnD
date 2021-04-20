@@ -1,14 +1,22 @@
 package app;
 
-import domain.Controls;
-import domain.GameCharacter;
+import domain.*;
+import domain.equipment.Equipment;
 import domain.gender.Gender;
+import domain.inventory.Inventory;
+import domain.map.Combat;
 import domain.model.*;
 import domain.race.Race;
+import domain.skills.Skill;
 import utility.KeyboardHelper;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameApp {
     private ChClass chClass;
+
     public void showControls() {
         for (var controls : Controls.values()
         ) {
@@ -18,6 +26,7 @@ public class GameApp {
     }
 
     public void characterCreation() throws InterruptedException {
+        List<GameCharacter> team = new ArrayList<>();
         GameCharacter gc = new GameCharacter();
         System.out.println("What is your adventurer's name ?");
         gc.setName(KeyboardHelper.askForText(">"));
@@ -69,39 +78,39 @@ public class GameApp {
         }
         System.out.println("Warrior \nMage \nRanger \nRogue");
         String className = KeyboardHelper.askForText(">").toLowerCase();
-        while (!(className.equals("warrior") || className.equals("mage")|| className.equals("ranger") || className.equals("rogue"))) {
+        while (!(className.equals("warrior") || className.equals("mage") || className.equals("ranger") || className.equals("rogue"))) {
             System.out.println("wrong input : ");
             className = KeyboardHelper.askForText(">").toLowerCase();
         }
-        if(className.equals("warrior")){
-            chClass =new WarriorClass("Warrior");
-            Skills.add(new Skills("Shield Bash"));
-            Equipment.addItem(1,"Castle-forged arming sword");
-            Equipment.addItem(1,"Kite-shield");
-            Equipment.addItem(1,"royal blue brigandine gambeson");
+        if (className.equals("warrior")) {
+            chClass = new WarriorClass("Warrior");
+            Skill.add(new Skill("Shield Bash"));
+            Equipment.addItem(1, "Castle-forged arming sword");
+            Equipment.addItem(1, "Kite-shield");
+            Equipment.addItem(1, "royal blue brigandine gambeson");
         }
-        if(className.equals("mage")){
-            chClass =new MageClass("Mage");
-            Skills.add(new Skills("lightning bolt"));
-            Equipment.addItem(1,"Wonky-looking wand");
-            Equipment.addItem(1,"Burgundy robes");
+        if (className.equals("mage")) {
+            chClass = new MageClass("Mage");
+            Skill.add(new Skill("lightning bolt"));
+            Equipment.addItem(1, "Wonky-looking wand");
+            Equipment.addItem(1, "Burgundy robes");
             Inventory.add("Weak mana potion");
 
         }
-        if(className.equals("ranger")){
-           chClass= new RangerClass("Ranger");
-            Skills.add(new Skills("Piercing Shot"));
-            Equipment.addItem(1,"yew warbow");
-            Equipment.addItem(1,"Leather chest armor");
-            Inventory.add(20,"barbed head arrow");
+        if (className.equals("ranger")) {
+            chClass = new RangerClass("Ranger");
+            Skill.add(new Skill("Piercing Shot"));
+            Equipment.addItem(1, "yew warbow");
+            Equipment.addItem(1, "Leather chest armor");
+            Inventory.add(20, "barbed head arrow");
         }
-        if(className.equals("rogue")){
-            chClass =new RogueClass("Rogue");
-            Skills.add(new Skills("Stealth"));
-            Skills.add(new Skills("Backstab"));
-            Equipment.addItem(1,"Short steel dagger");
-            Equipment.addItem(1,"Black hooded robe");
-            Inventory.add(10,"lockpick");
+        if (className.equals("rogue")) {
+            chClass = new RogueClass("Rogue");
+            Skill.add(new Skill("Stealth"));
+            Skill.add(new Skill("Backstab"));
+            Equipment.addItem(1, "Short steel dagger");
+            Equipment.addItem(1, "Black hooded robe");
+            Inventory.add(10, "lockpick");
 
         }
         gc.setChClass(chClass);
@@ -111,7 +120,7 @@ public class GameApp {
         System.out.println("Your charachter is being created ...");
         Thread.sleep(3000);
         System.out.println(gc.getRace().getSpeed());
-        System.out.println(gc.getName() + " the " + gc.getGender() + " " +gc.getRace() + " " +gc.getName() +" is created ");
+        System.out.println(gc.getName() + " the " + gc.getGender() + " " + gc.getRace() + " " + gc.getName() + " is created ");
         System.out.println(gc);
         System.out.println("Map is being loaded ...");
         //Map aanmaken
@@ -138,7 +147,6 @@ public class GameApp {
             System.out.println("2 de kiezen");
         }
     }
-
 
 
 }

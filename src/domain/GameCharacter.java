@@ -5,7 +5,7 @@ import domain.gender.Gender;
 import domain.model.ChClass;
 import domain.model.Inventory;
 import domain.race.Race;
-import domain.skills.Skills;
+import domain.skills.Skill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +86,7 @@ public class GameCharacter {
     }
 
     public void getSkills() {
-         Skills.getSkillList();
+         Skill.getSkillList();
     }
     public void getEquipment(){
         Equipment.getEquipments();
