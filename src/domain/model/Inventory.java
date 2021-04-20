@@ -1,7 +1,11 @@
 package domain.model;
 
-import java.util.List;
+import domain.skills.Skills;
 
 public interface Inventory {
-    List<String> getEquipments();
+    static void getEquipments() {
+
+    }
+
+
 }

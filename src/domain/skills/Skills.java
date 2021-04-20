@@ -1,21 +1,26 @@
 package domain.skills;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 public class Skills {
-    private static final List<String> skillList = new ArrayList<>();
-    public static void add(String skillname) {
-
-        skillList.add(skillname);
+    private static  List<Skills> skillList = new ArrayList<>();
+    private final String skillname;
+    public Skills(String skillname) {
+        this.skillname=skillname;
     }
 
-    public static void getSkillList() {
+    public static void add(Skills skill) {
+
+        skillList.add(skill);
+    }
+
+    public static List<Skills> getSkillList() {
         System.out.println("Skills: ");
-        skillList.forEach(System.out::println);
+        skillList.forEach(skills -> System.out.println(skills.skillname));
 
 
-
+        return null;
     }
 }
