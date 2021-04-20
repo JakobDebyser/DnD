@@ -1,31 +1,54 @@
 package domain;
 
-import domain.classes.*;
-import domain.equipment.Equipment;
 import domain.gender.Gender;
+import domain.model.ChClass;
+import domain.model.Inventory;
 import domain.race.Race;
 import domain.skills.Skills;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameCharacter {
     private String name;
     private Gender gender;
     private Race race;
-    private Character character;
-    private CharacterClass character_class;
-
-    public CharacterClass getCharacter_class() {
-        return character_class;
-    }
-
-    public void setCharacter_class(CharacterClass character_class) {
-        this.character_class = character_class;
-    }
+    private ChClass chClass;
+    private List<Integer> hp = new ArrayList<>();
+    private List<Inventory> inventories = new ArrayList<>();
+    private List<Integer> attributes = new ArrayList<>();
 
     public GameCharacter() {
     }
 
-    public Character getCharacter() {
-        return character;
+    public ChClass getChClass() {
+        return chClass;
+    }
+
+    public void setChClass(ChClass chClass) {
+        this.chClass = chClass;
+    }
+    public void addInventory(Inventory inventory){
+        inventories.add(inventory);
+    }
+    public void addHp(int i){
+        hp.add(i);
+    }
+
+    public List<Integer> getHp() {
+        return hp;
+    }
+
+    public void setHp(List<Integer> hp) {
+        this.hp = hp;
+    }
+
+    public List<Inventory> getInventories() {
+        return inventories;
+    }
+
+    public void setInventories(List<Inventory> inventories) {
+        this.inventories = inventories;
     }
 
 
@@ -53,18 +76,31 @@ public class GameCharacter {
         this.name = name;
     }
 
+    public void addAttributes(List<Integer> attribute) {
+      attributes.addAll(attribute);
+    }
 
+    public void setAttributes(List<Integer> attributes) {
+        this.attributes = attributes;
+    }
 
     public void getSkills() {
-
-         Skills.getSkillList() ;
+         Skills.getSkillList();
     }
     public void getAttributes(){
 
-    }
-    public void getEquipment(){
-        Equipment.getEquipments();
+
     }
 
-
+    @Override
+    public String toString() {
+        return
+                "Name='" + name + '\'' +"\n"+
+                "Gender=" + gender +"\n"+
+                "Race=" + race +"\n"+
+                "Class=" + chClass +"\n"+
+                "Hp=" + hp +"\n"+
+                "Initiative=" + inventories +"\n"+
+                "Attributes=" + attributes +"\n";
+    }
 }

@@ -2,19 +2,17 @@ package app;
 
 import domain.Controls;
 import domain.GameCharacter;
-import domain.classes.CharacterClass;
-import domain.equipment.Equipment;
 import domain.gender.Gender;
+import domain.model.*;
 import domain.race.Race;
-import domain.skills.Skills;
 import utility.KeyboardHelper;
 
 public class GameApp {
-    private Character character;
+    private ChClass chClass;
     public void showControls() {
         for (var controls : Controls.values()
         ) {
-            System.out.println(controls);
+            System.out.println(controls.toString());
 
         }
     }
@@ -43,6 +41,7 @@ public class GameApp {
                 var race : Race.values()
         ) {
             System.out.println(race);
+
         }
 
         String input = KeyboardHelper.askForText(">");
@@ -75,45 +74,29 @@ public class GameApp {
             className = KeyboardHelper.askForText(">").toLowerCase();
         }
         if(className.equals("warrior")){
-            gc.setCharacter_class(CharacterClass.WARRIOR);
-
-        }
+            chClass =new WarriorClass("Warrior");        }
         if(className.equals("mage")){
-            gc.setCharacter_class(CharacterClass.MAGE);
-            Skills.add("Lighting bolt");
-            Equipment.addItem(1,"Wonky-looking wand","weapon");
-            Equipment.addItem(1,"Burgundy robes","light armor");
-            Equipment.addItem(1,"Weak mana potion","consumable");
+            chClass =new MageClass("Mage");
+
         }
         if(className.equals("ranger")){
-            gc.setCharacter_class(CharacterClass.RANGER);
-            Skills.add("Piercing Shot");
-            Equipment.addItem(1,"Yew warbow","weapon");
-            Equipment.addItem(20,"barbed head arrow","consumable");
-            Equipment.addItem(1,"Leather chest armor","medium armor");
+            ChClass chClass= new RangerClass("Ranger");
         }
         if(className.equals("rogue")){
-            gc.setCharacter_class(CharacterClass.ROGUE);
-            Skills.add("Stealth");
-            Skills.add("Backstab");
-            Equipment.addItem(1,"Short steel dagger","weapon");
-            Equipment.addItem(1,"Black hooded robes","light armor");
-            Equipment.addItem(10,"lockpick","consumable");
+            chClass =new RogueClass("Rogue");
 
         }
+        gc.setChClass(chClass);
+        gc.addAttributes(chClass.getAttributes(gc.getRace()));
+        gc.addHp(gc.getRace().getSpeed());
         System.out.println("Your charachter is being created ...");
         Thread.sleep(3000);
-        gc.getSkills();
-        gc.getEquipment();
-
-        System.out.println("movementspeed: "+gc.getRace().getSpeed());
-        System.out.println(gc.getName() + " the " + gc.getGender() + " " +gc.getRace() + " " +className +" is created ");
-        System.out.println("Map ");
-
-
-
-
-
+        System.out.println(gc.getRace().getSpeed());
+        System.out.println(gc.getName() + " the " + gc.getGender() + " " +gc.getRace() + " " +gc.getName() +" is created ");
+        System.out.println(gc.toString());
+        System.out.println("Map is being loaded ...");
+        //Map aanmaken
+        System.out.println("Field of Generix loaded");
 
     }
 
