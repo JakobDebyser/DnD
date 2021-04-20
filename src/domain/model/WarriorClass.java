@@ -1,14 +1,13 @@
 package domain.model;
 
 import domain.race.Attributes;
+import domain.race.Race;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WarriorClass implements ChClass{
     private String name;
-    private int strength = 3;
-    private int Constitution = 2;
     private List<String> skillsList = new ArrayList<>();
     private List<Integer> attributes = new ArrayList<>();
 
@@ -17,9 +16,47 @@ public class WarriorClass implements ChClass{
     }
 
     @Override
-    public void getAttributes() {
-        attributes.add(Attributes.STRENGTH.getSpeed());
-        attributes.add(Attributes.CONSTITUTION.getSpeed());
+    public List<Integer> getAttributes(Race race) {
+        if(race.name().equals("HUMAN")){
+            attributes.add(Attributes.STRENGTH.getValues() + 1);
+            attributes.add(Attributes.CONSTITUTION.getValues()+1);
+            attributes.forEach(System.out::println);
+        }
+        if(race.name().equals("DWARF")){
+            attributes.add(3*(Attributes.STRENGTH.getValues() +3));
+            attributes.add(2*(Attributes.CONSTITUTION.getValues()+3));
+            attributes.forEach(System.out::println);
+        }
+        if(race.name().equals("ELF")){
+            attributes.add(3*(Attributes.STRENGTH.getValues()));
+            attributes.add(2*(Attributes.CONSTITUTION.getValues()));
+            attributes.forEach(System.out::println);
+        }
+        return attributes;
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public List<String> getSkillsList() {
+        return skillsList;
+    }
+
+    public void setSkillsList(List<String> skillsList) {
+        this.skillsList = skillsList;
+    }
+
+    public List<Integer> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(List<Integer> attributes) {
+        this.attributes = attributes;
     }
 
     @Override

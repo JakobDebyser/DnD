@@ -12,4 +12,5 @@ public enum Race {
     public  int getSpeed() {
         return speed*4;
     }
+
 }

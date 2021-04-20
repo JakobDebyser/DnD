@@ -1,9 +1,11 @@
 package domain.model;
 
+import domain.race.Race;
+
 import java.util.List;
 
 public interface ChClass {
-    void getAttributes();
+    List<Integer> getAttributes(Race race);
 
     int getHealthPoints();
 

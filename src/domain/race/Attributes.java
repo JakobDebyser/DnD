@@ -11,7 +11,7 @@ public enum Attributes {
     Attributes(int points) {
         this.points=points;
     }
-    public  int getSpeed() {
+    public  int getValues() {
         return points;
     }
 }

@@ -2,16 +2,13 @@ package app;
 
 import domain.Controls;
 import domain.GameCharacter;
-import domain.equipment.Equipment;
 import domain.gender.Gender;
-import domain.model.MageClass;
-import domain.model.RangerClass;
-import domain.model.RogueClass;
+import domain.model.*;
 import domain.race.Race;
 import utility.KeyboardHelper;
 
 public class GameApp {
-
+    private ChClass chClass;
     public void showControls() {
         for (var controls : Controls.values()
         ) {
@@ -44,6 +41,7 @@ public class GameApp {
                 var race : Race.values()
         ) {
             System.out.println(race);
+
         }
 
         String input = KeyboardHelper.askForText(">");
@@ -76,29 +74,26 @@ public class GameApp {
             className = KeyboardHelper.askForText(">").toLowerCase();
         }
         if(className.equals("warrior")){
-            gc.setChClass(new MageClass("Warrior"));
-
-           // gc.setClass(new Warrior(gc.getName()));
-        }
+            chClass =new WarriorClass("Warrior");        }
         if(className.equals("mage")){
-            gc.setChClass(new MageClass("Mage"));
-          //  gc.setClass(new Mage("Mage"));
+            chClass =new MageClass("Mage");
+
         }
         if(className.equals("ranger")){
-            gc.setChClass(new RangerClass("Ranger"));
-           // gc.setClass(new Ranger("Ranger"));
+            ChClass chClass= new RangerClass("Ranger");
         }
         if(className.equals("rogue")){
-            gc.setChClass(new RogueClass("Rogue"));
-           // gc.setClass(new Rogue("Rogue"));
+            chClass =new RogueClass("Rogue");
+
         }
+        gc.setChClass(chClass);
+        gc.addAttributes(chClass.getAttributes(gc.getRace()));
+        gc.addHp(gc.getRace().getSpeed());
         System.out.println("Your charachter is being created ...");
         Thread.sleep(3000);
-        gc.addHp(gc.getRace().getSpeed());
-        gc.addInventory(new Equipment());
-        gc.getSkills();
         System.out.println(gc.getRace().getSpeed());
-        System.out.println(gc.getName() + " the " + gc.getGender() + " " +gc.getRace() + " " +className +" is created ");
+        System.out.println(gc.getName() + " the " + gc.getGender() + " " +gc.getRace() + " " +gc.getName() +" is created ");
+        System.out.println(gc.toString());
         System.out.println("Map is being loaded ...");
         //Map aanmaken
         System.out.println("Field of Generix loaded");
