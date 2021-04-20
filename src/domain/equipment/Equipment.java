@@ -1,9 +1,11 @@
 package domain.equipment;
 
+import domain.model.Inventory;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Equipment {
+public class Equipment implements Inventory {
      final static String LIGHT_ARMOUR = "light armor";
      final static int MEDIUM_ARMOUR=5;
      final static int HEAVY_ARMOUR=10;
@@ -22,7 +24,12 @@ public class Equipment {
 
     }
 
-    public static List<String> getEquipments() {
+    @Override
+    public List<String> getEquipments() {
         return equipments;
     }
+
+ /* public static List<String> getEquipments() {
+        return equipments;
+    }*/
 }

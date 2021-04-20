@@ -1,23 +1,54 @@
 package domain;
 
-import domain.classes.*;
 import domain.gender.Gender;
+import domain.model.ChClass;
+import domain.model.Inventory;
 import domain.race.Race;
 import domain.skills.Skills;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameCharacter {
     private String name;
     private Gender gender;
     private Race race;
-    private Character character;
+    private ChClass chClass;
+    private List<Integer> hp = new ArrayList<>();
+    private List<Inventory> inventories = new ArrayList<>();
 
     public GameCharacter() {
     }
 
-    public Character getCharacter() {
-        return character;
+    public ChClass getChClass() {
+        return chClass;
     }
 
+    public void setChClass(ChClass chClass) {
+        this.chClass = chClass;
+    }
+    public void addInventory(Inventory inventory){
+        inventories.add(inventory);
+    }
+    public void addHp(int i){
+        hp.add(i);
+    }
+
+    public List<Integer> getHp() {
+        return hp;
+    }
+
+    public void setHp(List<Integer> hp) {
+        this.hp = hp;
+    }
+
+    public List<Inventory> getInventories() {
+        return inventories;
+    }
+
+    public void setInventories(List<Inventory> inventories) {
+        this.inventories = inventories;
+    }
 
     public Race getRace() {
         return race;
@@ -44,26 +75,28 @@ public class GameCharacter {
     }
 
 
-    public void setClass(Warrior warrior) {
-    }
-
-    public void setClass(Mage mage) {
-    }
-
-    public void setClass(Ranger ranger) {
-    }
-
-    public void setClass(Rogue rogue) {
-    }
+//    public void setClass(Warrior warrior) {
+//    }
+//
+//    public void setClass(Mage mage) {
+//    }
+//
+//    public void setClass(Ranger ranger) {
+//    }
+//
+//    public void setClass(Rogue rogue) {
+//    }
 
     public void getSkills() {
          Skills.getSkillList();
     }
     public void getAttributes(){
 
+
     }
 
-    public String getClassName() {
-        return CharacterClass.class.getName();
+    @Override
+    public String toString() {
+        return name;
     }
 }

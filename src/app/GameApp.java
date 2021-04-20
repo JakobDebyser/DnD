@@ -2,20 +2,20 @@ package app;
 
 import domain.Controls;
 import domain.GameCharacter;
-import domain.classes.Mage;
-import domain.classes.Ranger;
-import domain.classes.Rogue;
-import domain.classes.Warrior;
+import domain.equipment.Equipment;
 import domain.gender.Gender;
+import domain.model.MageClass;
+import domain.model.RangerClass;
+import domain.model.RogueClass;
 import domain.race.Race;
 import utility.KeyboardHelper;
 
 public class GameApp {
-    private Character character;
+
     public void showControls() {
         for (var controls : Controls.values()
         ) {
-            System.out.println(controls);
+            System.out.println(controls.toString());
 
         }
     }
@@ -76,28 +76,32 @@ public class GameApp {
             className = KeyboardHelper.askForText(">").toLowerCase();
         }
         if(className.equals("warrior")){
-            gc.setClass(new Warrior(gc.getName()));
+            gc.setChClass(new MageClass("Warrior"));
+
+           // gc.setClass(new Warrior(gc.getName()));
         }
         if(className.equals("mage")){
-            gc.setClass(new Mage("Mage"));
+            gc.setChClass(new MageClass("Mage"));
+          //  gc.setClass(new Mage("Mage"));
         }
         if(className.equals("ranger")){
-            gc.setClass(new Ranger("Ranger"));
+            gc.setChClass(new RangerClass("Ranger"));
+           // gc.setClass(new Ranger("Ranger"));
         }
         if(className.equals("rogue")){
-            gc.setClass(new Rogue("Rogue"));
+            gc.setChClass(new RogueClass("Rogue"));
+           // gc.setClass(new Rogue("Rogue"));
         }
         System.out.println("Your charachter is being created ...");
         Thread.sleep(3000);
+        gc.addHp(gc.getRace().getSpeed());
+        gc.addInventory(new Equipment());
         gc.getSkills();
         System.out.println(gc.getRace().getSpeed());
         System.out.println(gc.getName() + " the " + gc.getGender() + " " +gc.getRace() + " " +className +" is created ");
-        System.out.println("Map ");
-
-
-
-
-
+        System.out.println("Map is being loaded ...");
+        //Map aanmaken
+        System.out.println("Field of Generix loaded");
 
     }
 
