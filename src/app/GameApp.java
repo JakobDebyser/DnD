@@ -1,13 +1,10 @@
 package app;
 
-import domain.*;
 import domain.equipment.Equipment;
 import domain.Controls;
 import domain.GameCharacter;
-import domain.equipment.Equipment;
 import domain.gender.Gender;
 import domain.inventory.Inventory;
-import domain.map.Combat;
 import domain.map.Combat;
 import domain.model.*;
 import domain.race.Race;
@@ -21,7 +18,7 @@ import java.util.List;
 public class GameApp {
     private ChClass chClass;
 
-    private Inventory inventory = new InventoryClass();
+    private final domain.model.Inventory inventory = new InventoryClass();
     public void showControls() {
         for (var controls : Controls.values()
         ) {
@@ -100,7 +97,7 @@ public class GameApp {
             Skill.add(new Skill("lightning bolt"));
             Equipment.addItem(1,"Wonky-looking wand");
             Equipment.addItem(1,"Burgundy robes");
-            inventory.add(20, "Weak mana potion");
+            Inventory.add(20, "Weak mana potion");
             gc.addInventory(inventory);
         }
         if(className.equals("ranger")){
@@ -108,7 +105,7 @@ public class GameApp {
             Skill.add(new Skill("Piercing Shot"));
             Equipment.addItem(1,"yew warbow");
             Equipment.addItem(1,"Leather chest armor");
-            inventory.add(20,"barbed head arrow");
+            Inventory.add(20,"barbed head arrow");
             gc.addInventory(inventory);
         }
         if(className.equals("rogue")){
@@ -117,7 +114,7 @@ public class GameApp {
             Skill.add(new Skill("Backstab"));
             Equipment.addItem(1,"Short steel dagger");
             Equipment.addItem(1,"Black hooded robe");
-            inventory.add(10,"lockpick");
+            Inventory.add(10,"lockpick");
             gc.addInventory(inventory);
 
         }
@@ -126,7 +123,7 @@ public class GameApp {
         gc.addAttributes(chClass.getAttributes(gc.getRace()));
         gc.addHp(gc.getRace().getSpeed());
         gc.setHp(chClass.getHealthPoints());
-        gc.setXp(chClass.getManaPoints());
+        gc.addXp(chClass.getManaPoints());
         gc.setSp(chClass.getStamina());
         gc.setInitiative(chClass.getInitiative());
         System.out.println("Your charachter is being created ...");

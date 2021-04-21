@@ -1,28 +1,41 @@
 package domain;
 
+import domain.enemy.Being;
 import domain.equipment.Equipment;
 import domain.gender.Gender;
 import domain.model.ChClass;
 import domain.model.Inventory;
 import domain.race.Race;
 import domain.skills.Skill;
+import utility.KeyboardHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameCharacter {
+public class GameCharacter extends Being {
     private String name;
     private Gender gender;
     private Race race;
     private ChClass chClass;
-    private int hp ;
+    private int hp;
+    private int HPActual;
     private int xp;
     private int sp;
-    private int initiative ;
+    private int initiative;
     private List<Inventory> inventories = new ArrayList<>();
     private List<Integer> attributes = new ArrayList<>();
+    private int SP_actual;
+
+    public void setHPActual(int value) {
+        this.HPActual = value;
+    }
+
+    public void setSP_actual(int value) {
+        this.SP_actual = value;
+    }
 
     public GameCharacter() {
+        super();
     }
 
     public ChClass getChClass() {
@@ -32,11 +45,13 @@ public class GameCharacter {
     public void setChClass(ChClass chClass) {
         this.chClass = chClass;
     }
-    public void addInventory(Inventory inventory){
+
+    public void addInventory(Inventory inventory) {
         inventories.add(inventory);
     }
-    public void addHp(int i){
-        hp+=i;
+
+    public void addHp(int value) {
+        hp += value;
     }
 
     public int getInitiative() {
@@ -51,8 +66,8 @@ public class GameCharacter {
         return xp;
     }
 
-    public void setXp(int xp) {
-        this.xp = xp;
+    public void addXp(int xp) {
+        this.xp += xp;
     }
 
     public int getSp() {
@@ -105,7 +120,7 @@ public class GameCharacter {
     }
 
     public void addAttributes(List<Integer> attribute) {
-      attributes.addAll(attribute);
+        attributes.addAll(attribute);
     }
 
     public void setAttributes(List<Integer> attributes) {
@@ -113,23 +128,51 @@ public class GameCharacter {
     }
 
     public void getSkills() {
-         Skill.getSkillList();
+        Skill.getSkillList();
     }
-    public void getEquipment(){
+
+    public void getEquipment() {
         Equipment.getEquipments();
     }
 
     @Override
     public String toString() {
         return
-                "Name='" + name + '\'' +"\n"+
-                "Gender=" + gender +"\n"+
-                "Race=" + race +"\n"+
-                "Class=" + chClass +"\n"+
-                        "Xp=" + xp +"\n"+
-                "Hp=" + hp +"\n"+
-                        "Sp=" + sp +"\n"+
-                "Initiative=" + initiative +"\n"+
-                "Attributes=" + attributes +"\n";
+                "Name='" + name + '\'' + "\n" +
+                        "Gender=" + gender + "\n" +
+                        "Race=" + race + "\n" +
+                        "Class=" + chClass + "\n" +
+                        "Xp=" + xp + "\n" +
+                        "Hp=" + hp + "\n" +
+                        "Sp=" + sp + "\n" +
+                        "Initiative=" + initiative + "\n" +
+                        "Attributes=" + attributes + "\n";
     }
+
+    public void chooseOption(Being enemy) {
+
+            System.out.println("[1] Basic attack");
+            System.out.println("[2] Skill or spell");
+            System.out.println("[3] use item");
+            System.out.println("[4] flee");
+            int input = KeyboardHelper.askForNumber("input: ");
+            switch (input) {
+                case 1:
+                    useBasicAttack(enemy);
+                case 2:
+
+                case 3:
+                case 4:
+                    if (enemy.useDice() > useDice()) {
+                        System.out.println("attempt to flee failed");
+                    } else {
+                        System.out.println("flee success!");
+                        break;
+                    }
+                default:
+                    System.out.println("wrong input. please try again");
+            }
+
+    }
+
 }
