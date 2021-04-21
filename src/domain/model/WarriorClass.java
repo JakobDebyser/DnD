@@ -20,20 +20,21 @@ public class WarriorClass implements ChClass{
 
     @Override
     public List<Integer> getAttributes(Race race) {
+        String text;
         if(race.name().equals("HUMAN")){
             attributes.add(Attributes.STRENGTH.getValue() + 1);
             attributes.add(Attributes.CONSTITUTION.getValue()+1);
-            attributes.forEach(System.out::println);
+
         }
         if(race.name().equals("DWARF")){
             attributes.add(3*(Attributes.STRENGTH.getValue() +3));
             attributes.add(2*(Attributes.CONSTITUTION.getValue()+3));
-            attributes.forEach(System.out::println);
+
         }
         if(race.name().equals("ELF")){
             attributes.add(3*(Attributes.STRENGTH.getValue()));
             attributes.add(2*(Attributes.CONSTITUTION.getValue()));
-            attributes.forEach(System.out::println);
+
         }
         return attributes;
 

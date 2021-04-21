@@ -1,5 +1,7 @@
 package app;
 
+import domain.combat.fight;
+import domain.enemy.NPC;
 import domain.equipment.Equipment;
 import domain.Controls;
 import domain.GameCharacter;
@@ -133,7 +135,8 @@ public class GameApp {
         System.out.println(gc);
         System.out.println("Map is being loaded ...");
         //Map aanmaken
-        Combat.main();
+        fight newfight= new fight(gc,new NPC("goblin",50,100,5));
+        newfight.combat();
         System.out.println("Field of Generix loaded");
 
     }

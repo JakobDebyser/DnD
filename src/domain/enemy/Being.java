@@ -19,13 +19,14 @@ public class Being {
 
     public Being(String name, int hpMax, int spMax, int strength){
         this.name=name;
-        this.hpMax=getStrength()*5;
+        this.hpMax=hpMax;
         this.hpActual=hpMax;
-        this.spMax=getDexterity()*5;
+        this.spMax=spMax;
         this.spActual=spMax;
         this.initiative=5;
         this.dexterity=10;
         this.strength=strength;
+
         basicAttack= new Attack(this,"Basic Attack",getStrength(),5);
 
         alive=true;
@@ -113,6 +114,7 @@ public class Being {
 
 
     public int useDice() {
+
         return dice.rollNDice(getDexterity());
     }
     public int use20Dice(){

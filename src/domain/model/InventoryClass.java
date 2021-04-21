@@ -12,6 +12,11 @@ public class InventoryClass implements Inventory{
         inventory.put(i, s);
     }
 
+    @Override
+    public void add(String name) {
+        inventory.put(1,name);
+    }
+
     public Map<Integer, String> getInventory() {
         return inventory;
     }

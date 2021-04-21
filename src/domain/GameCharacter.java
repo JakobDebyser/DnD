@@ -166,7 +166,7 @@ public class GameCharacter extends Being {
                     if (enemy.useDice() > useDice()) {
                         System.out.println("attempt to flee failed");
                     } else {
-                        System.out.println("flee success!");
+                        System.out.println("flee attempt was a success!");
                         break;
                     }
                 default:

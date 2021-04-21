@@ -8,33 +8,34 @@ public class fight {
     private final GameCharacter player;
     private final NPC enemy;
 
-    public fight(GameCharacter player, NPC goblin) throws InterruptedException {
+    public fight(GameCharacter player, NPC enemy)  {
         this.player = player;
-        this.enemy =goblin;
+        this.enemy = enemy;
         new Dice();
-        while(combat());
-    }
-    public boolean combat() throws InterruptedException {
-        System.out.println(player.getName()+" is fighting a "+ enemy.getName());
-        int rounds =1;
 
-        while (player.getHp()>0&& enemy.getHpActual()>0){
-            System.out.println("---- Round "+rounds+" ----");
+    }
+
+    public boolean combat() throws InterruptedException {
+        System.out.println(player.getName() + " is fighting a " + enemy.getName());
+        int rounds = 1;
+
+        while (player.getHp() > 0 && enemy.getHpActual() > 0) {
+            System.out.println("---- Round " + rounds + " ----");
             Thread.sleep(1000);
-            System.out.println(player.getName()+" stats:");
-            System.out.println("HP: "+player.getHpActual()+"/"+player.getHp());
-            System.out.println("SP: "+player.getSpActual()+"/"+player.getSp());
+            System.out.println(player.getName() + " stats:");
+            System.out.println("HP: " + player.getHpActual() + "/" + player.getHp());
+            System.out.println("SP: " + player.getSpActual() + "/" + player.getSp());
             Thread.sleep(1000);
-            System.out.println(enemy.getName()+" stats:");
-            System.out.println("HP: "+enemy.getHpActual()+"/"+enemy.getHpMax());
-            System.out.println("SP: "+enemy.getSpActual()+"/"+enemy.getSpMax());
+            System.out.println(enemy.getName() + " stats:");
+            System.out.println("HP: " + enemy.getHpActual() + "/" + enemy.getHpMax());
+            System.out.println("SP: " + enemy.getSpActual() + "/" + enemy.getSpMax());
             player.chooseOption(enemy);
-            if (!enemy.isAlive()|| !player.isAlive())break;
+            if (enemy.isAlive() || player.isAlive()) break;
             enemy.useBasicAttack(player);
             rounds++;
 
         }
-        if(player.getHpActual() > 0 && enemy.getHpActual() <= 0) {
+        if (player.getHpActual() > 0 && enemy.getHpActual() <= 0) {
             System.out.println("YOU HAVE WON! ");
             player.addXp(10);
             return true;
