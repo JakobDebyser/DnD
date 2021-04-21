@@ -113,6 +113,10 @@ public class GameCharacter {
         return name;
     }
 
+    public void setXp(int xp) {
+        this.xp = xp;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

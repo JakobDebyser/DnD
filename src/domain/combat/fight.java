@@ -8,11 +8,11 @@ public class fight {
     private final GameCharacter player;
     private final NPC enemy;
 
-    public fight(GameCharacter player, NPC enemy)  {
+    public fight(GameCharacter player, NPC enemy) throws InterruptedException {
         this.player = player;
         this.enemy = enemy;
         new Dice();
-
+        while(combat());
     }
 
     public boolean combat() throws InterruptedException {
