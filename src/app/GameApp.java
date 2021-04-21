@@ -2,13 +2,16 @@ package app;
 
 import domain.Controls;
 import domain.GameCharacter;
+import domain.enemy.NPC;
 import domain.equipment.Equipment;
 import domain.gender.Gender;
+
 import domain.map.textbase.Game;
 import domain.map.ui.Combat;
 import domain.model.*;
 import domain.race.Race;
-import domain.skills.Skills;
+
+import domain.skills.Skill;
 import utility.KeyboardHelper;
 
 public class GameApp {
@@ -81,7 +84,7 @@ public class GameApp {
         }
         if(className.equals("warrior")){
             chClass =new WarriorClass("Warrior");
-            Skills.add(new Skills("Shield Bash"));
+            Skill.add(new Skill("Shield Bash"));
             Equipment.addItem(1,"Castle-forged arming sword");
             Equipment.addItem(1,"Kite-shield");
             Equipment.addItem(1,"royal blue brigandine gambeson");
@@ -89,7 +92,7 @@ public class GameApp {
         }
         if(className.equals("mage")){
             chClass =new MageClass("Mage");
-            Skills.add(new Skills("lightning bolt"));
+            Skill.add(new Skill("lightning bolt"));
             Equipment.addItem(1,"Wonky-looking wand");
             Equipment.addItem(1,"Burgundy robes");
             inventory.add(20, 10);
@@ -98,7 +101,7 @@ public class GameApp {
         }
         if(className.equals("ranger")){
            chClass= new RangerClass("Ranger");
-            Skills.add(new Skills("Piercing Shot"));
+            Skill.add(new Skill("Piercing Shot"));
             Equipment.addItem(1,"yew warbow");
             Equipment.addItem(1,"Leather chest armor");
             inventory.add(20,10);
@@ -106,8 +109,8 @@ public class GameApp {
         }
         if(className.equals("rogue")){
             chClass =new RogueClass("Rogue");
-            Skills.add(new Skills("Stealth"));
-            Skills.add(new Skills("Backstab"));
+            Skill.add(new Skill("Stealth"));
+            Skill.add(new Skill("Backstab"));
             Equipment.addItem(1,"Short steel dagger");
             Equipment.addItem(1,"Black hooded robe");
             inventory.add(10,10);
@@ -151,7 +154,7 @@ public class GameApp {
             Combat.main();
         } else {
             characterCreation();
-            Game.main(gc);
+            Game.main(gc,new NPC("goblin",20,100,4));
         }
     }
 

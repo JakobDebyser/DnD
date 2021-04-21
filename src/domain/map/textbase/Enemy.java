@@ -1,26 +1,28 @@
 package domain.map.textbase;
 
+import domain.enemy.NPC;
+
 import java.util.LinkedList;
 
 public class Enemy {
 
     private LinkedList<Cell> enemyPartList
-        = new LinkedList<>();
+            = new LinkedList<>();
     private Cell enemyCell;
     private String name;
 
-    public Enemy(String s, Cell initPos)
-    {
-        name = s;
+    public Enemy(NPC s, Cell initPos) {
+        name = s.getName();
         enemyCell = initPos;
         enemyPartList.add(enemyCell);
         enemyCell.setCellType(CellType.ENEMY_NODE);
     }
 
-    public void grow() { enemyPartList.add(enemyCell); }
+    public void grow() {
+        enemyPartList.add(enemyCell);
+    }
 
-    public void move(Cell nextCell)
-    {
+    public void move(Cell nextCell) {
         System.out.println(name + " is moving to "
                 + nextCell.getRow() + " "
                 + nextCell.getCol());
@@ -32,9 +34,8 @@ public class Enemy {
         enemyPartList.addFirst(enemyCell);
     }
 
-    public boolean checkCrash(Cell nextCell)
-    {
-        System.out.println("Going to check for Crash");
+    public boolean checkCrash(Cell nextCell) {
+        System.out.println("Checking for collision");
         for (Cell cell : enemyPartList) {
             if (cell == nextCell) {
                 return true;
@@ -44,18 +45,20 @@ public class Enemy {
         return false;
     }
 
-    public LinkedList<Cell> getEnemyPartList()
-    {
+    public LinkedList<Cell> getEnemyPartList() {
         return enemyPartList;
     }
 
     public void
-    setEnemyPartList(LinkedList<Cell> enemyPartList)
-    {
+    setEnemyPartList(LinkedList<Cell> enemyPartList) {
         this.enemyPartList = enemyPartList;
     }
 
-    public Cell getEnemyCell() { return enemyCell; }
+    public Cell getEnemyCell() {
+        return enemyCell;
+    }
 
-    public void setEnemyCell(Cell enemyCell) { this.enemyCell = enemyCell; }
+    public void setEnemyCell(Cell enemyCell) {
+        this.enemyCell = enemyCell;
+    }
 }

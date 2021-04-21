@@ -1,68 +1,60 @@
 package domain.map.textbase;
 
 import domain.GameCharacter;
+import domain.combat.fight;
+import domain.enemy.NPC;
 import utility.KeyboardHelper;
 
 public class Game {
     public static final int DIRECTION_NONE = 0, DIRECTION_RIGHT = 1,
-        DIRECTION_LEFT = -1, DIRECTION_UP = 2, DIRECTION_DOWN = -2;
+            DIRECTION_LEFT = -1, DIRECTION_UP = 2, DIRECTION_DOWN = -2;
     private Enemy enemy;
     private BoardGame board;
     private int direction;
     private boolean gameOver;
-    private GameCharacter character ;
+    private GameCharacter character;
 
-    public Game(Enemy enemy, BoardGame board, GameCharacter character)
-    {
+    public Game(Enemy enemy, BoardGame board, GameCharacter character) {
         this.enemy = enemy;
         this.board = board;
         this.character = character;
     }
 
-    public Enemy getEnemy()
-    {
+    public Enemy getEnemy() {
         return enemy;
     }
 
-    public void setEnemy(Enemy enemy)
-    {
+    public void setEnemy(Enemy enemy) {
         this.enemy = enemy;
     }
 
-    public BoardGame getBoard()
-    {
+    public BoardGame getBoard() {
         return board;
     }
 
-    public void setBoard(BoardGame board)
-    {
+    public void setBoard(BoardGame board) {
         this.board = board;
     }
 
-    public boolean isGameOver()
-    {
+    public boolean isGameOver() {
         return gameOver;
     }
 
-    public void setGameOver(boolean gameOver)
-    {
+    public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
     }
 
-    public int getDirection()
-    {
+    public int getDirection() {
         return direction;
     }
 
-    public void setDirection(int direction)
-    {
+    public void setDirection(int direction) {
         this.direction = direction;
     }
 
     // We need to update the game at regular intervals,
     // and accept user input from the Keyboard.
-    public void update()
-    {
+    public void update() {
         System.out.println("Going to update the game");
         if (!gameOver) {
             if (direction != DIRECTION_NONE) {
@@ -71,8 +63,7 @@ public class Game {
                 if (enemy.checkCrash(nextCell)) {
                     setDirection(DIRECTION_NONE);
                     gameOver = true;
-                }
-                else {
+                } else {
                     enemy.move(nextCell);
                     if (nextCell.getCellType() == CellType.CHARACTER) {
                         enemy.grow();
@@ -83,22 +74,18 @@ public class Game {
         }
     }
 
-    private Cell getNextCell(Cell currentPosition)
-    {
+    private Cell getNextCell(Cell currentPosition) {
         System.out.println("Going to find next cell");
         int row = currentPosition.getRow();
         int col = currentPosition.getCol();
 
         if (direction == DIRECTION_RIGHT) {
             col++;
-        }
-        else if (direction == DIRECTION_LEFT) {
+        } else if (direction == DIRECTION_LEFT) {
             col--;
-        }
-        else if (direction == DIRECTION_UP) {
+        } else if (direction == DIRECTION_UP) {
             row--;
-        }
-        else if (direction == DIRECTION_DOWN) {
+        } else if (direction == DIRECTION_DOWN) {
             row++;
         }
 
@@ -106,12 +93,13 @@ public class Game {
 
         return nextCell;
     }
-    public static void main(GameCharacter character) {
+
+    public static void main(GameCharacter character, NPC npc) throws InterruptedException {
 
         System.out.println("Going to start game");
 
         Cell initPos = new Cell(0, 0);
-        Enemy initEnemy = new Enemy("Goblin", initPos);
+        Enemy initEnemy = new Enemy(npc, initPos);
         BoardGame board = new BoardGame(10, 10);
         Game newGame = new Game(initEnemy, board, character);
         newGame.gameOver = false;
@@ -123,6 +111,7 @@ public class Game {
             switch (choice.toLowerCase()) {
                 case "north":
                     newGame.setDirection(DIRECTION_DOWN);
+
                     break;
                 case "south":
                     newGame.setDirection(DIRECTION_UP);
@@ -143,10 +132,14 @@ public class Game {
                 newGame.update();
                 if (i == 3)
                     newGame.direction = DIRECTION_RIGHT;
-                if (newGame.gameOver == true)
+                if (newGame.gameOver)
                     break;
             }
         }
+    }
+
+    private CellType getCurrentCell() {
+        return null;
     }
 
 }
