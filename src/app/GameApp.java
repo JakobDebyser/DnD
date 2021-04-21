@@ -4,7 +4,8 @@ import domain.Controls;
 import domain.GameCharacter;
 import domain.equipment.Equipment;
 import domain.gender.Gender;
-import domain.map.Combat;
+import domain.map.textbase.Game;
+import domain.map.ui.Combat;
 import domain.model.*;
 import domain.race.Race;
 import domain.skills.Skills;
@@ -12,6 +13,7 @@ import utility.KeyboardHelper;
 
 public class GameApp {
     private ChClass chClass;
+    GameCharacter gc = new GameCharacter();
     private Inventory inventory = new InventoryClass();
     public void showControls() {
         for (var controls : Controls.values()
@@ -21,8 +23,8 @@ public class GameApp {
         }
     }
 
-    public void characterCreation() throws InterruptedException {
-        GameCharacter gc = new GameCharacter();
+    public GameCharacter characterCreation() throws InterruptedException {
+
         System.out.println("What is your adventurer's name ?");
         gc.setName(KeyboardHelper.askForText(">"));
         System.out.println(gc.getName() + "... Yes ... that's a good name. A strong name." +
@@ -90,7 +92,7 @@ public class GameApp {
             Skills.add(new Skills("lightning bolt"));
             Equipment.addItem(1,"Wonky-looking wand");
             Equipment.addItem(1,"Burgundy robes");
-            inventory.add(20, "Weak mana potion");
+            inventory.add(20, 10);
             gc.addInventory(inventory);
 
         }
@@ -99,7 +101,7 @@ public class GameApp {
             Skills.add(new Skills("Piercing Shot"));
             Equipment.addItem(1,"yew warbow");
             Equipment.addItem(1,"Leather chest armor");
-            inventory.add(20,"barbed head arrow");
+            inventory.add(20,10);
             gc.addInventory(inventory);
         }
         if(className.equals("rogue")){
@@ -108,7 +110,7 @@ public class GameApp {
             Skills.add(new Skills("Backstab"));
             Equipment.addItem(1,"Short steel dagger");
             Equipment.addItem(1,"Black hooded robe");
-            inventory.add(10,"lockpick");
+            inventory.add(10,10);
             gc.addInventory(inventory);
         }
         gc.setChClass(chClass);
@@ -126,8 +128,10 @@ public class GameApp {
         System.out.println(gc);
         System.out.println("Map is being loaded ...");
         //Map aanmaken
-        Combat.main();
+
         System.out.println("Field of Generix loaded");
+
+        return gc;
 
     }
 
@@ -144,12 +148,11 @@ public class GameApp {
         }
         if (i == 1) {
             characterCreation();
+            Combat.main();
         } else {
-
-            System.out.println("2 de kiezen");
+            characterCreation();
+            Game.main(gc);
         }
     }
-
-
 
 }

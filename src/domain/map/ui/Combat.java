@@ -1,4 +1,4 @@
-package domain.map;
+package domain.map.ui;
 
 import javax.swing.*;
 import java.awt.*;
