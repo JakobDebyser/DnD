@@ -8,7 +8,6 @@ import domain.map.textbase.Game;
 import domain.map.ui.Combat;
 import domain.model.*;
 import domain.race.Race;
-import domain.skills.Skills;
 import utility.KeyboardHelper;
 
 public class GameApp {
@@ -81,7 +80,6 @@ public class GameApp {
         }
         if(className.equals("warrior")){
             chClass =new WarriorClass("Warrior");
-            Skills.add(new Skills("Shield Bash"));
             Equipment.addItem(1,"Castle-forged arming sword");
             Equipment.addItem(1,"Kite-shield");
             Equipment.addItem(1,"royal blue brigandine gambeson");
@@ -89,7 +87,6 @@ public class GameApp {
         }
         if(className.equals("mage")){
             chClass =new MageClass("Mage");
-            Skills.add(new Skills("lightning bolt"));
             Equipment.addItem(1,"Wonky-looking wand");
             Equipment.addItem(1,"Burgundy robes");
             inventory.add(20, 10);
@@ -98,7 +95,6 @@ public class GameApp {
         }
         if(className.equals("ranger")){
            chClass= new RangerClass("Ranger");
-            Skills.add(new Skills("Piercing Shot"));
             Equipment.addItem(1,"yew warbow");
             Equipment.addItem(1,"Leather chest armor");
             inventory.add(20,10);
@@ -106,8 +102,6 @@ public class GameApp {
         }
         if(className.equals("rogue")){
             chClass =new RogueClass("Rogue");
-            Skills.add(new Skills("Stealth"));
-            Skills.add(new Skills("Backstab"));
             Equipment.addItem(1,"Short steel dagger");
             Equipment.addItem(1,"Black hooded robe");
             inventory.add(10,10);
@@ -118,7 +112,7 @@ public class GameApp {
         gc.addAttributes(chClass.getAttributes(gc.getRace()));
         gc.addHp(gc.getRace().getSpeed());
         gc.setHp(chClass.getHealthPoints());
-        gc.setXp(chClass.getManaPoints());
+      //  gc.setXp(chClass.getManaPoints());
         gc.setSp(chClass.getStamina());
         gc.setInitiative(chClass.getInitiative());
         System.out.println("Your charachter is being created ...");

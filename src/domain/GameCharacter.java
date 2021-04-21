@@ -1,38 +1,36 @@
 package domain;
 
-import domain.enemy.Being;
 import domain.equipment.Equipment;
 import domain.gender.Gender;
 import domain.model.ChClass;
 import domain.model.Inventory;
 import domain.race.Race;
 import domain.skills.Skill;
-import utility.KeyboardHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameCharacter extends Being {
+public class GameCharacter {
     private String name;
     private Gender gender;
     private Race race;
     private ChClass chClass;
     private int hp;
-    private int HPActual;
+ //   private int HPActual;
     private int xp;
     private int sp;
     private int initiative;
     private List<Inventory> inventories = new ArrayList<>();
     private List<Integer> attributes = new ArrayList<>();
-    private int SP_actual;
-
-    public void setHPActual(int value) {
-        this.HPActual = value;
-    }
-
-    public void setSP_actual(int value) {
-        this.SP_actual = value;
-    }
+//    private int SP_actual;
+//
+//    public void setHPActual(int value) {
+//        this.HPActual = value;
+//    }
+//
+//    public void setSP_actual(int value) {
+//        this.SP_actual = value;
+//    }
 
     public GameCharacter() {
         super();
@@ -149,7 +147,7 @@ public class GameCharacter extends Being {
                         "Attributes=" + attributes + "\n";
     }
 
-    public void chooseOption(Being enemy) {
+ /*   public void chooseOption(Being enemy) {
 
             System.out.println("[1] Basic attack");
             System.out.println("[2] Skill or spell");
@@ -173,6 +171,6 @@ public class GameCharacter extends Being {
                     System.out.println("wrong input. please try again");
             }
 
-    }
+    }*/
 
 }

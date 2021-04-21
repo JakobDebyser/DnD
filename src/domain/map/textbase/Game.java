@@ -123,6 +123,8 @@ public class Game {
             switch (choice.toLowerCase()) {
                 case "north":
                     newGame.setDirection(DIRECTION_DOWN);
+                    newGame.getBoard().generateCharacter();
+                    System.out.println( initPos.getCellType());
                     break;
                 case "south":
                     newGame.setDirection(DIRECTION_UP);
