@@ -20,4 +20,8 @@ public class Inventory {
     public static void use(String name){
         inventory.remove(name);
     }
+
+    public static List<String> getInventory() {
+        return inventory;
+    }
 }

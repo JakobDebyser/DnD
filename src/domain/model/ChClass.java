@@ -1,9 +1,7 @@
 package domain.model;
 
-import domain.race.Attributes;
 import domain.race.Race;
-import domain.race.Stats;
-import domain.skills.Skills;
+import domain.skills.Skill;
 
 import java.util.List;
 
@@ -16,9 +14,12 @@ public interface ChClass {
     int getInitiative();
     String toString();
 
-    void addSkills(String skill);
+    void addSkills();
+    void addItems();
+    void addEquipment();
+    double getDamage();
 
-    List<Skills> getSkills();
+    List<Skill> getSkills();
 
 
 }

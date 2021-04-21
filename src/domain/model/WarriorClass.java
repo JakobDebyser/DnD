@@ -3,7 +3,7 @@ package domain.model;
 import domain.race.Attributes;
 import domain.race.Race;
 import domain.race.Stats;
-import domain.skills.Skills;
+import domain.skills.Skill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class WarriorClass implements ChClass{
     private String name;
-    private List<Skills> skillsList = new ArrayList<>();
+    private List<Skill> skillList = new ArrayList<>();
     private List<Integer> attributes = new ArrayList<>();
 
     public WarriorClass(String name) {
@@ -20,29 +20,21 @@ public class WarriorClass implements ChClass{
 
     @Override
     public List<Integer> getAttributes(Race race) {
+        String text;
         if(race.name().equals("HUMAN")){
-            attributes.add(Attributes.STRENGTH.getValues() + 1);
-            attributes.add(Attributes.CONSTITUTION.getValues()+1);
-            attributes.add(Attributes.DEXTERITY.getValues());
-            attributes.add(Attributes.CHARISMA.getValues());
-            attributes.add(Attributes.WISDOM.getValues());
-            attributes.add(Attributes.INTELLIGENCE.getValues());
+            attributes.add(Attributes.STRENGTH.getValue() + 1);
+            attributes.add(Attributes.CONSTITUTION.getValue()+1);
+
         }
         if(race.name().equals("DWARF")){
-            attributes.add(3*(Attributes.STRENGTH.getValues() +3));
-            attributes.add(2*(Attributes.CONSTITUTION.getValues()+3));
-            attributes.add(Attributes.DEXTERITY.getValues());
-            attributes.add(Attributes.CHARISMA.getValues());
-            attributes.add(Attributes.WISDOM.getValues());
-            attributes.add(Attributes.INTELLIGENCE.getValues());
+            attributes.add(3*(Attributes.STRENGTH.getValue() +3));
+            attributes.add(2*(Attributes.CONSTITUTION.getValue()+3));
+
         }
         if(race.name().equals("ELF")){
-            attributes.add(3*(Attributes.STRENGTH.getValues()));
-            attributes.add(2*(Attributes.CONSTITUTION.getValues()));
-            attributes.add(Attributes.DEXTERITY.getValues());
-            attributes.add(Attributes.CHARISMA.getValues());
-            attributes.add(Attributes.WISDOM.getValues());
-            attributes.add(Attributes.INTELLIGENCE.getValues());
+            attributes.add(3*(Attributes.STRENGTH.getValue()));
+            attributes.add(2*(Attributes.CONSTITUTION.getValue()));
+
         }
         return attributes;
 
@@ -55,12 +47,12 @@ public class WarriorClass implements ChClass{
     public void setName(String name) {
         this.name = name;
     }
-    public List<Skills> getSkillsList() {
-        return skillsList;
+    public List<Skill> getSkillsList() {
+        return skillList;
     }
 
-    public void setSkillsList(List<Skills> skillsList) {
-        this.skillsList = skillsList;
+    public void setSkillsList(List<Skill> skillList) {
+        this.skillList = skillList;
     }
 
     public List<Integer> getAttributes() {
@@ -73,12 +65,12 @@ public class WarriorClass implements ChClass{
 
     @Override
     public int getHealthPoints() {
-        return Attributes.CONSTITUTION.getValues()* Stats.HP.getValue();
+        return Attributes.CONSTITUTION.getValue()* Stats.HP.getValue();
     }
 
     @Override
     public int getStamina() {
-        return Attributes.DEXTERITY.getValues()*Stats.SP.getValue();
+        return Attributes.DEXTERITY.getValue()*Stats.SP.getValue();
     }
 
     @Override
@@ -93,7 +85,7 @@ public class WarriorClass implements ChClass{
 
     @Override
     public int getInitiative() {
-        return Attributes.INITIATIVE.getValues();
+        return Attributes.INITIATIVE.getValue();
     }
 
     @Override
@@ -102,13 +94,28 @@ public class WarriorClass implements ChClass{
     }
 
     @Override
-    public void addSkills(String skill) {
-        skillsList.addAll(Objects.requireNonNull(Skills.getSkillList()));
+    public void addSkills() {
+        skillList.addAll(Objects.requireNonNull(Skill.getSkillList()));
 
     }
 
     @Override
-    public List<Skills> getSkills() {
-        return skillsList;
+    public void addItems() {
+
+    }
+
+    @Override
+    public void addEquipment() {
+
+    }
+
+    @Override
+    public double getDamage() {
+        return 0;
+    }
+
+    @Override
+    public List<Skill> getSkills() {
+        return skillList;
     }
 }
