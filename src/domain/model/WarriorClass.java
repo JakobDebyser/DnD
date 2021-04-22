@@ -7,12 +7,14 @@ import domain.skills.Skill;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class WarriorClass implements ChClass{
     private String name;
     private List<Skill> skillList = new ArrayList<>();
     private List<Integer> attributes = new ArrayList<>();
+    int hp = 0;
+    int xp=0;
+    int sp=0;
 
     public WarriorClass(String name) {
         this.name = name;
@@ -20,20 +22,40 @@ public class WarriorClass implements ChClass{
 
     @Override
     public List<Integer> getAttributes(Race race) {
-        String text;
         if(race.name().equals("HUMAN")){
-            attributes.add(Attributes.STRENGTH.getValue() + 1);
-            attributes.add(Attributes.CONSTITUTION.getValue()+1);
+            attributes.add(3+Attributes.STRENGTH.getValue() + 1);
+            attributes.add(2+Attributes.CONSTITUTION.getValue()+1);
+            attributes.add(Attributes.INTELLIGENCE.getValue()+1);
+            attributes.add(Attributes.WISDOM.getValue() +1);
+            attributes.add(Attributes.CHARISMA.getValue()+1);
+            attributes.add(Attributes.DEXTERITY.getValue()+1);
+            hp = Attributes.CONSTITUTION.getValue()+3;
+            xp = Attributes.DEXTERITY.getValue();
+            sp = Attributes.DEXTERITY.getValue();
 
         }
         if(race.name().equals("DWARF")){
-            attributes.add(3*(Attributes.STRENGTH.getValue() +3));
-            attributes.add(2*(Attributes.CONSTITUTION.getValue()+3));
+            attributes.add(3+(Attributes.STRENGTH.getValue() +3));
+            attributes.add(2+(Attributes.CONSTITUTION.getValue()+3));
+            attributes.add(Attributes.INTELLIGENCE.getValue());
+            attributes.add(Attributes.WISDOM.getValue());
+            attributes.add(Attributes.CHARISMA.getValue());
+            attributes.add(Attributes.DEXTERITY.getValue());
+            hp = Attributes.CONSTITUTION.getValue()+5;
+            xp = Attributes.DEXTERITY.getValue();
+            sp = Attributes.DEXTERITY.getValue();
 
         }
         if(race.name().equals("ELF")){
-            attributes.add(3*(Attributes.STRENGTH.getValue()));
-            attributes.add(2*(Attributes.CONSTITUTION.getValue()));
+            attributes.add(3+(Attributes.STRENGTH.getValue()));
+            attributes.add(2+(Attributes.CONSTITUTION.getValue()));
+            attributes.add(Attributes.INTELLIGENCE.getValue());
+            attributes.add(Attributes.WISDOM.getValue() );
+            attributes.add(Attributes.CHARISMA.getValue());
+            attributes.add(Attributes.DEXTERITY.getValue());
+            hp = Attributes.CONSTITUTION.getValue()+2;
+            xp = Attributes.DEXTERITY.getValue();
+            sp = Attributes.DEXTERITY.getValue();
 
         }
         return attributes;
@@ -64,23 +86,18 @@ public class WarriorClass implements ChClass{
     }
 
     @Override
-    public int getHealthPoints() {
-        return Attributes.CONSTITUTION.getValue()* Stats.HP.getValue();
+    public int getHP() {
+        return hp* Stats.HP.getValue();
     }
 
     @Override
-    public int getStamina() {
-        return Attributes.DEXTERITY.getValue()*Stats.SP.getValue();
+    public int getXP() {
+        return xp*Stats.XP.getValue();
     }
 
     @Override
-    public int getManaPoints() {
-        return 0;
-    }
-
-    @Override
-    public int getSpeed(Race race) {
-        return race.getSpeed();
+    public int getSP() {
+        return sp*Stats.SP.getValue();
     }
 
     @Override
@@ -94,8 +111,8 @@ public class WarriorClass implements ChClass{
     }
 
     @Override
-    public void addSkills() {
-        skillList.addAll(Objects.requireNonNull(Skill.getSkillList()));
+    public void addSkills(Skill skill) {
+        skillList.add(skill);
 
     }
 

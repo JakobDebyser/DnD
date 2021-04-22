@@ -12,12 +12,9 @@ public class BoardGame {
 
         cells = new Cell[ROW_COUNT][COL_COUNT];
         for (int row = 0; row < ROW_COUNT; row++) {
-            System.out.print("*");
             for (int column = 0; column < COL_COUNT; column++) {
-                System.out.print("*");
                 cells[row][column] = new Cell(row, column);
             }
-            System.out.println();
         }
     }
 
@@ -31,19 +28,20 @@ public class BoardGame {
         this.cells = cells;
     }
 
-    public void generateCharacter()
+    public void generateMap()
     {
-        int row=0;
-        int column=0;
-        System.out.println("Going to generate Character 's position");
-        while(true){
-             row = (int)(Math.random() * ROW_COUNT);
-             column = (int)(Math.random() * COL_COUNT);
-            if(cells[row][column].getCellType()!= CellType.ENEMY_NODE)
-                break;
-        }
 
-        cells[row][column].setCellType(CellType.CHARACTER);
-        System.out.println("Charecter is generated at: " + row + " " + column);
+        for (CellType c: CellType.values()
+             ) {
+            int row = (int) (Math.random() * ROW_COUNT);
+            int column = (int) (Math.random() * COL_COUNT);
+            if(cells[row][column].getCellType()==null){
+                if(c!=CellType.CHARACTER){
+                    cells[row][column].setCellType(c);
+                    System.out.println(cells[row][column].getCellType()+" is at: " + row + " " + column);
+                }
+
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@ package app;
 
 import domain.Controls;
 import domain.GameCharacter;
+import domain.enemy.Being;
 import domain.equipment.Equipment;
 import domain.gender.Gender;
 import domain.map.textbase.Game;
@@ -111,20 +112,15 @@ public class GameApp {
         gc.getSkills();
         gc.addAttributes(chClass.getAttributes(gc.getRace()));
         gc.addHp(gc.getRace().getSpeed());
-        gc.setHp(chClass.getHealthPoints());
-      //  gc.setXp(chClass.getManaPoints());
-        gc.setSp(chClass.getStamina());
+        gc.setHp(chClass.getHP());
+        gc.setXp(chClass.getXP());
+        gc.setSp(chClass.getSP());
         gc.setInitiative(chClass.getInitiative());
         System.out.println("Your charachter is being created ...");
         Thread.sleep(3000);
         System.out.println(gc.getRace().getSpeed());
         System.out.println(gc.getName() + " the " + gc.getGender() + " " +gc.getRace() + " " +gc.getName() +" is created ");
         System.out.println(gc);
-        System.out.println("Map is being loaded ...");
-        //Map aanmaken
-
-        System.out.println("Field of Generix loaded");
-
         return gc;
 
     }
@@ -141,11 +137,16 @@ public class GameApp {
             i = KeyboardHelper.askForNumber(">");
         }
         if (i == 1) {
+
             characterCreation();
+            System.out.println("Map is being loaded ...");
+            System.out.println("Field of Generix loaded");
             Combat.main();
         } else {
             characterCreation();
-            Game.main(gc);
+            System.out.println("Map is being loaded ...");
+            System.out.println("Cave of Thread");
+            Game.main(gc, new Being("Enemy", 10, 20,10));
         }
     }
 

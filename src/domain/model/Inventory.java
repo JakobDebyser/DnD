@@ -1,6 +1,8 @@
 package domain.model;
 
+import java.util.Map;
+
 public interface Inventory {
-    void getInventory();
+    Map<Integer, Integer> getInventory();
     void add(int i, int y) ;
 }

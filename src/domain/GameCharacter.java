@@ -16,21 +16,11 @@ public class GameCharacter {
     private Race race;
     private ChClass chClass;
     private int hp;
- //   private int HPActual;
     private int xp;
     private int sp;
     private int initiative;
     private List<Inventory> inventories = new ArrayList<>();
     private List<Integer> attributes = new ArrayList<>();
-//    private int SP_actual;
-//
-//    public void setHPActual(int value) {
-//        this.HPActual = value;
-//    }
-//
-//    public void setSP_actual(int value) {
-//        this.SP_actual = value;
-//    }
 
     public GameCharacter() {
         super();
@@ -136,6 +126,7 @@ public class GameCharacter {
     public void getEquipment() {
         Equipment.getEquipments();
     }
+    
 
     @Override
     public String toString() {
@@ -150,31 +141,5 @@ public class GameCharacter {
                         "Initiative=" + initiative + "\n" +
                         "Attributes=" + attributes + "\n";
     }
-
- /*   public void chooseOption(Being enemy) {
-
-            System.out.println("[1] Basic attack");
-            System.out.println("[2] Skill or spell");
-            System.out.println("[3] use item");
-            System.out.println("[4] flee");
-            int input = KeyboardHelper.askForNumber("input: ");
-            switch (input) {
-                case 1:
-                    useBasicAttack(enemy);
-                case 2:
-
-                case 3:
-                case 4:
-                    if (enemy.useDice() > useDice()) {
-                        System.out.println("attempt to flee failed");
-                    } else {
-                        System.out.println("flee attempt was a success!");
-                        break;
-                    }
-                default:
-                    System.out.println("wrong input. please try again");
-            }
-
-    }*/
 
 }
