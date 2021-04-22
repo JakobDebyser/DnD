@@ -28,6 +28,7 @@ public class Being {
         this.strength=strength;
 
         basicAttack= new Attack(this,"Basic Attack",getStrength(),5);
+        dice =new Dice();
 
         alive=true;
     }

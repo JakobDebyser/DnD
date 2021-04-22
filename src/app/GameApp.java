@@ -9,7 +9,12 @@ import domain.map.textbase.Game;
 import domain.map.ui.Combat;
 import domain.model.*;
 import domain.race.Race;
+import repository.IOFiles;
 import utility.KeyboardHelper;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameApp {
     private ChClass chClass;
@@ -145,9 +150,26 @@ public class GameApp {
         } else {
             characterCreation();
             System.out.println("Map is being loaded ...");
-            System.out.println("Cave of Thread");
-            Game.main(gc, new Being("Enemy", 10, 20,10));
+            System.out.println("Cave of Thread loaded ");
+            Game.main(gc, new Being("Goblin", 10, 20,10));
         }
     }
+
+    public void loadGame(){
+        List<Path> list = new ArrayList<>();
+        List<String> listFile=new ArrayList<>();
+        list.addAll(IOFiles.loadGame());
+        System.out.println("*******");
+        list.forEach(System.out::println);
+        System.out.println("Choose your game:  ");
+        for (int i = 0; i<list.size(); i++){
+            System.out.println(i + " : " + list.get(i));
+        }
+        int x = KeyboardHelper.askForNumber(">");
+        Path path = list.get(x);
+         listFile.addAll(IOFiles.readfile(path));
+         listFile.forEach(System.out::println);
+
+        }
 
 }

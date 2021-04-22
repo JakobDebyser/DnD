@@ -1,4 +1,5 @@
 package app;
+import repository.IOFiles;
 import utility.KeyboardHelper;
 import utility.MenuHelper;
 
@@ -18,9 +19,11 @@ public class Main {
                     break;
                 case "load":
                     System.out.println("your choice : " + choice);
+                    app.loadGame();
                     break;
                 case "reset":
                     System.out.println("your choice : " + choice);
+                    IOFiles.deleteFiles();
                     break;
                 case "controls":
                     app.showControls();

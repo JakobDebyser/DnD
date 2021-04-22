@@ -56,6 +56,7 @@ public class Fight {
         switch (input) {
             case 1:
                 enemy.useBasicAttack(enemy);
+                break;
             case 2:
 
             case 3:

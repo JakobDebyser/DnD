@@ -187,15 +187,15 @@ public class Game {
         newGame.gameOver = false;
         newGame.direction = DIRECTION_RIGHT;
         newGame.board.generateMap();
-
         while (!newGame.isGameOver()) {
             String choice = KeyboardHelper.askForText("Choice: (looknorth, looksouth, lookwest, lookeast, lookround)");
-
             switch (choice.toLowerCase()) {
                 case "north":
                     newGame.setDirection(DIRECTION_DOWN);
                     newGame.update();
                     newGame.lookNorth();
+                    CombatGame.fighting(character, enemy);
+                  //  character.chooseOption(enemy);
                     break;
                 case "south":
                     newGame.setDirection(DIRECTION_UP);
@@ -213,7 +213,7 @@ public class Game {
                     newGame.lookEast();
                     break;
                 case "round":
-                    newGame.update();
+                   // newGame.update();
                     newGame.lookWest();
                     newGame.lookEast();
                     newGame.lookSouth();
