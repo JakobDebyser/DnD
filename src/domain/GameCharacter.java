@@ -165,7 +165,12 @@ public class GameCharacter extends Being {
                     useBasicAttack(enemy);
                 case 2:
 
+                    System.out.println("no skills available");
+                    break;
                 case 3:
+
+                    System.out.println("no items available");
+                    break;
                 case 4:
                     if (enemy.useDice() > useDice()) {
                         System.out.println("attempt to flee failed");
