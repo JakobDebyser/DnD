@@ -90,7 +90,7 @@ public class GameApp {
             chClass =new MageClass("Mage");
             Equipment.addItem(1,"Wonky-looking wand");
             Equipment.addItem(1,"Burgundy robes");
-            inventory.add(20, 10);
+            inventory.add(1, "Weak mana potion");
             gc.addInventory(inventory);
 
         }
@@ -98,14 +98,14 @@ public class GameApp {
            chClass= new RangerClass("Ranger");
             Equipment.addItem(1,"yew warbow");
             Equipment.addItem(1,"Leather chest armor");
-            inventory.add(20,10);
+            inventory.add(20,"10");
             gc.addInventory(inventory);
         }
         if(className.equals("rogue")){
             chClass =new RogueClass("Rogue");
             Equipment.addItem(1,"Short steel dagger");
             Equipment.addItem(1,"Black hooded robe");
-            inventory.add(10,10);
+            inventory.add(10,"10");
             gc.addInventory(inventory);
         }
         gc.setChClass(chClass);
@@ -115,6 +115,8 @@ public class GameApp {
         gc.setHp(chClass.getHP());
         gc.setXp(chClass.getXP());
         gc.setSp(chClass.getSP());
+        gc.setSP_actual(chClass.getSP());
+        gc.setHPActual(chClass.getHP());
         gc.setInitiative(chClass.getInitiative());
         System.out.println("Your charachter is being created ...");
         Thread.sleep(3000);
@@ -146,7 +148,7 @@ public class GameApp {
             characterCreation();
             System.out.println("Map is being loaded ...");
             System.out.println("Cave of Thread");
-            Game.main(gc, new Being("Enemy", 10, 20,10));
+            Game.main(gc, new Being("goblin", 10, 20,5));
         }
     }
 

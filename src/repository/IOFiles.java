@@ -51,11 +51,10 @@ public class IOFiles {
 
             for (String s : list
             ) {
-                Thread thread = new Thread(()-> writefile(file, s + "\n"));
-                thread.start();
-                thread.join();
+                 writefile(file, s + "\n");
+
             }
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException  e) {
             throw new RuntimeException(e);
         }
     }

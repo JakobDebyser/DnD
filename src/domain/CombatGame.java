@@ -12,7 +12,7 @@ public class CombatGame {
     public static void fighting(GameCharacter character, Being enemy) {
         System.out.println(character.getName() + "is fighting a " + enemy.getName());
         System.out.println(character.getName() + " HP = " + character.getHp());
-        int hp = character.getHp();
+        int hp = character.getHpActual();
         while ( hp != 0) {
             System.out.println("Enter attack:");
             KeyboardHelper.askForText(">");
@@ -23,8 +23,8 @@ public class CombatGame {
             int input = KeyboardHelper.askForNumber("input: ");
             switch (input) {
                 case 1:
-                    enemy.useBasicAttack(enemy);
-                    hp-=10;
+                    character.useBasicAttack(enemy);
+
                     break;
                 case 2:
                     hp-=10;
