@@ -2,6 +2,7 @@ package domain.map.textbase;
 
 import domain.CombatGame;
 import domain.GameCharacter;
+import domain.combat.Fight;
 import domain.enemy.Being;
 import utility.KeyboardHelper;
 
@@ -14,12 +15,14 @@ public class Game {
     private boolean gameOver;
     private GameCharacter character;
     private Being enemy;
+    private Fight fight;
 
-    public Game(Player ch, BoardGame board, GameCharacter character, Being enemy) {
+    public Game(Player ch, BoardGame board, GameCharacter character, Being enemy)  {
         this.player = ch;
         this.board = board;
         this.character = character;
         this.enemy = enemy;
+
     }
 
     public Player getPlayer() {
@@ -62,7 +65,8 @@ public class Game {
 
                 if (player.checkCrash(nextCell)) {
                     setDirection(DIRECTION_NONE);
-                    CombatGame.fighting(character, enemy);
+
+                    CombatGame.fighting(character,enemy);
                     gameOver = true;
                 } else {
                     player.move(nextCell);
@@ -70,7 +74,8 @@ public class Game {
                         //  player.grow();
                         System.out.println(player.getCharCell().getCellType() + "=" + nextCell.getCellType());
                         System.out.println("figthing");
-                        CombatGame.fighting(character, enemy);
+                        fight.combat();
+                        //CombatGame.fighting(character, enemy);
                         //figth
                         // board.generateEnemy();
                     }
@@ -191,6 +196,7 @@ public class Game {
             String choice = KeyboardHelper.askForText("Choice: (looknorth, looksouth, lookwest, lookeast, lookround)");
             switch (choice.toLowerCase()) {
                 case "north":
+
                     newGame.setDirection(DIRECTION_DOWN);
                     newGame.update();
                     newGame.lookNorth();
