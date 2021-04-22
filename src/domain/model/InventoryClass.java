@@ -5,22 +5,22 @@ import java.util.Map;
 
 public class InventoryClass implements Inventory{
 
-    Map<Integer, String> inventory = new HashMap<>();
+    Map<String, Integer> inventory = new HashMap<>();
 
     @Override
-    public Map<Integer, String> getInventory() {
+    public Map<String, Integer> getInventory() {
         return inventory;
 
     }
 
     @Override
-    public void add(int amount, String name) {
-        inventory.put(amount, name);
+    public void add(String name, int amount) {
+        inventory.put(name, amount);
 
     }
 
 
-    public void setInventory(Map<Integer, String> inventory) {
+    public void setInventory(Map<String, Integer> inventory) {
         this.inventory = inventory;
     }
 

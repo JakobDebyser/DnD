@@ -9,6 +9,7 @@ import domain.map.textbase.Game;
 import domain.map.ui.Combat;
 import domain.model.*;
 import domain.race.Race;
+import domain.skills.Skill;
 import repository.IOFiles;
 import utility.KeyboardHelper;
 
@@ -86,6 +87,7 @@ public class GameApp {
         }
         if(className.equals("warrior")){
             chClass =new WarriorClass("Warrior");
+            Skill.add(new Skill("Shield bash"));
             Equipment.addItem(1,"Castle-forged arming sword");
             Equipment.addItem(1,"Kite-shield");
             Equipment.addItem(1,"royal blue brigandine gambeson");
@@ -93,24 +95,28 @@ public class GameApp {
         }
         if(className.equals("mage")){
             chClass =new MageClass("Mage");
+            Skill.add(new Skill("Lightning bolt"));
             Equipment.addItem(1,"Wonky-looking wand");
             Equipment.addItem(1,"Burgundy robes");
-            inventory.add(20, 10);
+            inventory.add("Weak mana potion", 1);
             gc.addInventory(inventory);
 
         }
         if(className.equals("ranger")){
            chClass= new RangerClass("Ranger");
+           Skill.add(new Skill("Piercing shot"));
             Equipment.addItem(1,"yew warbow");
             Equipment.addItem(1,"Leather chest armor");
-            inventory.add(20,10);
+            inventory.add("Barbed head arrow",20);
             gc.addInventory(inventory);
         }
         if(className.equals("rogue")){
             chClass =new RogueClass("Rogue");
+            Skill.add(new Skill("Stealth"));
+            Skill.add(new Skill("Backstab"));
             Equipment.addItem(1,"Short steel dagger");
             Equipment.addItem(1,"Black hooded robe");
-            inventory.add(10,10);
+            inventory.add("Lockpick",10);
             gc.addInventory(inventory);
         }
         gc.setChClass(chClass);
@@ -120,10 +126,14 @@ public class GameApp {
         gc.setHp(chClass.getHP());
         gc.setXp(chClass.getXP());
         gc.setSp(chClass.getSP());
+        gc.setSP_actual(chClass.getSP());
+        gc.setHPActual(chClass.getHP());
         gc.setInitiative(chClass.getInitiative());
         System.out.println("Your charachter is being created ...");
         Thread.sleep(3000);
-        System.out.println(gc.getRace().getSpeed());
+        System.out.println("Inventory: "+gc.getInventories());
+
+        System.out.println("movementspeed: "+gc.getRace().getSpeed());
         System.out.println(gc.getName() + " the " + gc.getGender() + " " +gc.getRace() + " " +gc.getName() +" is created ");
         System.out.println(gc);
         return gc;
