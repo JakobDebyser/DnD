@@ -1,7 +1,13 @@
 package domain.map.textbase;
 
 public enum CellType {
-    EMPTY,
     CHARACTER,
-    ENEMY_NODE;
+    ENEMY_NODE,
+    IMPASSABLE_RIVER,
+    WILD,
+    CAMPFIRE,
+    WHITEHOUSE,
+    THORNY_SHRUB,
+    TREASURE_CHEST;
+
 }

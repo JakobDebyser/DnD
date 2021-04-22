@@ -8,7 +8,8 @@ public class InventoryClass implements Inventory{
     Map<Integer, Integer> inventory = new HashMap<>();
 
     @Override
-    public void getInventory() {
+    public Map<Integer, Integer> getInventory() {
+        return inventory;
 
     }
 

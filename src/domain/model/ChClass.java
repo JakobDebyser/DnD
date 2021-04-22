@@ -7,14 +7,13 @@ import java.util.List;
 
 public interface ChClass {
     List<Integer> getAttributes(Race race);
-    int getHealthPoints();
-    int getStamina();
-    int getManaPoints();
-    int getSpeed(Race race);
+    int getHP();
+    int getSP();
+    int getXP();
     int getInitiative();
     String toString();
 
-    void addSkills();
+    void addSkills(Skill skill);
     void addItems();
     void addEquipment();
     double getDamage();

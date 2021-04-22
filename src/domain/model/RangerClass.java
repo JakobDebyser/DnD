@@ -7,14 +7,14 @@ import domain.skills.Skill;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class RangerClass implements ChClass {
-    private final String name;
-    private final List<Skill> skillList = new ArrayList<>();
-    private final List<Integer> attributes = new ArrayList<>();
-
-
+    private String name;
+    private  List<Skill> skillList = new ArrayList<>();
+    private  List<Integer> attributes = new ArrayList<>();
+    int hp = 0;
+    int xp=0;
+    int sp=0;
     public RangerClass(String name) {
         this.name = name;
     }
@@ -22,51 +22,58 @@ public class RangerClass implements ChClass {
 
     @Override
     public List<Integer> getAttributes(Race race) {
-             if(race.name().equals("HUMAN")){
-                attributes.add(3+ Attributes.DEXTERITY.getValue() + 1);
-                attributes.add(1+Attributes.WISDOM.getValue()+1);
-                 attributes.add(Attributes.STRENGTH.getValue()+1);
-                 attributes.add( Attributes.INTELLIGENCE.getValue()+1);
-                 attributes.add( Attributes.WISDOM.getValue()+1);
+        if (race.name().equals("HUMAN")) {
+            attributes.add(Attributes.STRENGTH.getValue() + 1);
+            attributes.add(Attributes.CONSTITUTION.getValue() + 1);
+            attributes.add(Attributes.INTELLIGENCE.getValue() + 1);
+            attributes.add(1+Attributes.WISDOM.getValue() + 1);
+            attributes.add(Attributes.CHARISMA.getValue() + 1);
+            attributes.add(1 + Attributes.DEXTERITY.getValue() + 1);
+            hp = Attributes.CONSTITUTION.getValue() ;
+            xp = Attributes.DEXTERITY.getValue() + 2;
+            sp = Attributes.DEXTERITY.getValue() + 2;
 
-                 attributes.add(Attributes.CONSTITUTION.getValue()+1);
-                 attributes.add(Attributes.CHARISMA.getValue()+1 );
-                 attributes.add(getHealthPoints());
-                 attributes.add(getManaPoints());
-                 attributes.add(Attributes.INITIATIVE.getValue()+1 );
+        }
+        if (race.name().equals("DWARF")) {
+            attributes.add(Attributes.STRENGTH.getValue() + 3);
+            attributes.add(Attributes.CONSTITUTION.getValue() + 3);
+            attributes.add(1 + Attributes.INTELLIGENCE.getValue());
+            attributes.add(Attributes.WISDOM.getValue());
+            attributes.add(Attributes.CHARISMA.getValue());
+            attributes.add(3 + Attributes.DEXTERITY.getValue());
+            hp = Attributes.CONSTITUTION.getValue() + 3;
+            xp = Attributes.DEXTERITY.getValue() + 3;
+            sp = Attributes.DEXTERITY.getValue() + 3;
 
-            }
-            if(race.name().equals("DWARF")){
-                attributes.add(3+ Attributes.DEXTERITY.getValue());
-                attributes.add(1+Attributes.WISDOM.getValue());
-
-            }
-            if(race.name().equals("ELF")){
-                attributes.add(3+ Attributes.DEXTERITY.getValue() +3);
-                attributes.add(1+Attributes.WISDOM.getValue());
-
-            }
+        }
+        if (race.name().equals("ELF")) {
+            attributes.add(Attributes.STRENGTH.getValue());
+            attributes.add(Attributes.CONSTITUTION.getValue());
+            attributes.add(1 + Attributes.INTELLIGENCE.getValue() + 3);
+            attributes.add(Attributes.WISDOM.getValue());
+            attributes.add(Attributes.CHARISMA.getValue());
+            attributes.add(3 + Attributes.DEXTERITY.getValue() + 3);
+            hp = Attributes.CONSTITUTION.getValue();
+            xp = Attributes.DEXTERITY.getValue() + 6;
+            sp = Attributes.DEXTERITY.getValue() + 6;
+        }
             return attributes;
+
     }
 
     @Override
-    public int getHealthPoints() {
-        return Attributes.CONSTITUTION.getValue()* Stats.HP.getValue();
+    public int getHP() {
+        return hp* Stats.HP.getValue();
     }
 
     @Override
-    public int getStamina() {
-        return Attributes.DEXTERITY.getValue()*Stats.SP.getValue();
+    public int getXP() {
+        return xp*Stats.XP.getValue();
     }
 
     @Override
-    public int getManaPoints() {
-        return 0;
-    }
-
-    @Override
-    public int getSpeed(Race race) {
-        return race.getSpeed();
+    public int getSP() {
+        return sp*Stats.SP.getValue();
     }
 
     @Override
@@ -80,8 +87,9 @@ public class RangerClass implements ChClass {
     }
 
     @Override
-    public void addSkills() {
-        skillList.addAll(Objects.requireNonNull(Skill.getSkillList()));
+    public void addSkills(Skill skill) {
+        skillList.add(skill);
+
     }
 
     @Override

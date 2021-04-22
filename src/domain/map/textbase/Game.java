@@ -1,31 +1,33 @@
 package domain.map.textbase;
 
+import domain.CombatGame;
 import domain.GameCharacter;
-import domain.combat.fight;
-import domain.enemy.NPC;
+import domain.enemy.Being;
 import utility.KeyboardHelper;
 
 public class Game {
     public static final int DIRECTION_NONE = 0, DIRECTION_RIGHT = 1,
             DIRECTION_LEFT = -1, DIRECTION_UP = 2, DIRECTION_DOWN = -2;
-    private Enemy enemy;
+    private Player player;
     private BoardGame board;
     private int direction;
     private boolean gameOver;
     private GameCharacter character;
+    private Being enemy;
 
-    public Game(Enemy enemy, BoardGame board, GameCharacter character) {
-        this.enemy = enemy;
+    public Game(Player ch, BoardGame board, GameCharacter character, Being enemy) {
+        this.player = ch;
         this.board = board;
         this.character = character;
-    }
-
-    public Enemy getEnemy() {
-        return enemy;
-    }
-
-    public void setEnemy(Enemy enemy) {
         this.enemy = enemy;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public BoardGame getBoard() {
@@ -52,22 +54,25 @@ public class Game {
         this.direction = direction;
     }
 
-    // We need to update the game at regular intervals,
-    // and accept user input from the Keyboard.
     public void update() {
         System.out.println("Going to update the game");
         if (!gameOver) {
             if (direction != DIRECTION_NONE) {
-                Cell nextCell = getNextCell(enemy.getEnemyCell());
+                Cell nextCell = getNextCell(player.getCharCell());
 
-                if (enemy.checkCrash(nextCell)) {
+                if (player.checkCrash(nextCell)) {
                     setDirection(DIRECTION_NONE);
+                    CombatGame.fighting(character, enemy);
                     gameOver = true;
                 } else {
-                    enemy.move(nextCell);
-                    if (nextCell.getCellType() == CellType.CHARACTER) {
-                        enemy.grow();
-                        board.generateCharacter();
+                    player.move(nextCell);
+                    if (nextCell.getCellType() == CellType.ENEMY_NODE) {
+                        //  player.grow();
+                        System.out.println(player.getCharCell().getCellType() + "=" + nextCell.getCellType());
+                        System.out.println("figthing");
+                        CombatGame.fighting(character, enemy);
+                        //figth
+                        // board.generateEnemy();
                     }
                 }
             }
@@ -94,52 +99,131 @@ public class Game {
         return nextCell;
     }
 
-    public static void main(GameCharacter character, NPC npc) throws InterruptedException {
+    public void lookNorth() {
+        Cell currentcell = player.getCharCell();
+        int row = currentcell.getRow();
+        int column = currentcell.getCol();
+        System.out.print("To the north of you there is a ");
+        for (int i = row; i < board.ROW_COUNT; i++) {
+            for (int j = column; j == column; j++) {
+                Cell cell = board.getCells()[i][j];
+                if (cell.getCellType() != null) {
+                    if (cell.getCellType() != CellType.CHARACTER) {
+                        System.out.print(cell.getCellType() + ", ");
+                    }
+                }
+            }
+
+        }
+        System.out.println();
+    }
+
+    public void lookSouth() {
+        Cell currentcell = player.getCharCell();
+        int row = currentcell.getRow();
+        int column = currentcell.getCol();
+        System.out.print("To the south of you there is a ");
+        for (int i = 0; i < row; i++) {
+            for (int j = column; j == column; j++) {
+                Cell cell = board.getCells()[i][j];
+                if (cell.getCellType() != null) {
+                    if (cell.getCellType() != CellType.CHARACTER) {
+                        System.out.print(cell.getCellType() + ", ");
+                    }
+                }
+            }
+
+        }
+        System.out.println();
+    }
+
+    public void lookEast() {
+        Cell currentcell = player.getCharCell();
+        int row = currentcell.getRow();
+        int column = currentcell.getCol();
+        System.out.print("To the east of you there is a ");
+
+        for (int j = 0; j < column; j++) {
+            for (int i = row; i == row; i++) {
+                Cell cell = board.getCells()[i][j];
+                if (cell.getCellType() != null) {
+                    if (cell.getCellType() != CellType.CHARACTER) {
+                        System.out.print(cell.getCellType() + ", ");
+                    }
+                }
+            }
+
+        }
+        System.out.println();
+    }
+
+    public void lookWest() {
+        Cell currentcell = player.getCharCell();
+        int row = currentcell.getRow();
+        int column = currentcell.getCol();
+        System.out.print("To the east of you there is a ");
+
+        for (int j = column; j < board.COL_COUNT; j++) {
+            for (int i = row; i == row; i++) {
+                Cell cell = board.getCells()[i][j];
+                if (cell.getCellType() != null) {
+                    if (cell.getCellType() != CellType.CHARACTER) {
+                        System.out.print(cell.getCellType() + ", ");
+                    }
+                }
+            }
+        }
+        System.out.println();
+    }
+
+    public static void main(GameCharacter character, Being enemy) {
 
         System.out.println("Going to start game");
 
         Cell initPos = new Cell(0, 0);
-        Enemy initEnemy = new Enemy(npc, initPos);
+        Player initChar = new Player(character.getName(), initPos);
         BoardGame board = new BoardGame(10, 10);
-        Game newGame = new Game(initEnemy, board, character);
+        Game newGame = new Game(initChar, board, character, enemy);
         newGame.gameOver = false;
         newGame.direction = DIRECTION_RIGHT;
+        newGame.board.generateMap();
 
         while (!newGame.isGameOver()) {
-            String choice = KeyboardHelper.askForText("Choice: (north, south, west, east)");
+            String choice = KeyboardHelper.askForText("Choice: (looknorth, looksouth, lookwest, lookeast, lookround)");
 
             switch (choice.toLowerCase()) {
                 case "north":
                     newGame.setDirection(DIRECTION_DOWN);
-
+                    newGame.update();
+                    newGame.lookNorth();
                     break;
                 case "south":
                     newGame.setDirection(DIRECTION_UP);
+                    newGame.update();
+                    newGame.lookSouth();
                     break;
                 case "west":
                     newGame.setDirection(DIRECTION_RIGHT);
+                    newGame.update();
+                    newGame.lookWest();
                     break;
                 case "east":
                     newGame.setDirection(DIRECTION_LEFT);
+                    newGame.update();
+                    newGame.lookEast();
+                    break;
+                case "round":
+                    newGame.update();
+                    newGame.lookWest();
+                    newGame.lookEast();
+                    newGame.lookSouth();
+                    newGame.lookNorth();
                     break;
 
                 default:
                     System.out.println("Invalid choice, please try again.");
             }
-            for (int i = 0; i < 5; i++) {
-                if (i == 2)
-                    newGame.board.generateCharacter();
-                newGame.update();
-                if (i == 3)
-                    newGame.direction = DIRECTION_RIGHT;
-                if (newGame.gameOver)
-                    break;
-            }
         }
-    }
-
-    private CellType getCurrentCell() {
-        return null;
     }
 
 }

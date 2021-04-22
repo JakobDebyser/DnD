@@ -2,7 +2,7 @@ package domain.race;
 
 public enum Stats {
     HP(5),
-    MP(5),
+    XP(5),
     SP(5);
 
     int points;
